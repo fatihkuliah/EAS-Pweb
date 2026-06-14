@@ -1,0 +1,32 @@
+<section class="order-page position-relative overflow-hidden">
+      <img src="assets/images/aboutus atas kanan.svg" alt="" class="aboutus-atas-kanan-qris position-absolute z-0" />
+      <img src="assets/images/aboutus atas kiri.svg" alt="" class="aboutus-atas-kiri position-absolute z-0" />
+      <div class="container position-relative z-1">
+        <div class="row py-5 justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="judul-menu d-inline-block">QRIS</div>
+            <p class="menu-tagline mt-3">
+              <span>Scan QR Code</span>
+              <br />
+              Scan QR Code di bawah untuk menyelesaikan pembayaran dengan QRIS. Setelah pembayaran berhasil, pesanan akan segera diproses
+            </p>
+          </div>
+        </div>
+
+        <div class="row pb-5 justify-content-center">
+          <div class="col-lg-5">
+            <div class="qris-detail-box text-center">
+              <img class="qris-code-img mt-4" src="assets/images/Qris.png" alt="QR Code MieME" />
+              <p class="m-0 mt-4">MieME QRIS Payment</p>
+              <h1 id="qrisTotal">Rp0</h1>
+              <a href="<?= url("payment") ?>" class="order-back text-decoration-none d-inline-block mt-3">Pilih Metode Lain</a>
+              <a href="<?= url("upload-payment") ?>" class="order-back text-decoration-none d-inline-block mt-3 ms-2">Upload Bukti</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="<?= asset("assets/js/core/mieme-app.js") ?>"></script>
+    <script src="<?= asset("assets/js/features/payment/qris.js") ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
