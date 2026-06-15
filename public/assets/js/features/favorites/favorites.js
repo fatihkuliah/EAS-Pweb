@@ -29,11 +29,15 @@ function renderFavorites() {
 }
 
 function hapus(id) {
-  MieME.toggleFavorite(id);
+  MieME.toggleFavorite(id).then(() => {
+    renderFavorites();
+  });
 }
 
 function tambah(id) {
-  MieME.addCart(id);
+  MieME.addCart(id).then(() => {
+    alert('Menu berhasil ditambahkan ke keranjang!');
+  });
 }
 
 renderFavorites();

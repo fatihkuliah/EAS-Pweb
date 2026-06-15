@@ -42,9 +42,19 @@ class MenuController extends Controller
         ]);
     }
 
-    public function toggleFavorite(): never
+    public function toggleFavorite(): void
     {
         Menu::toggleFavorite((int) post('id'));
+
+        if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'favorites' => Menu::favorites()
+            ]);
+            exit;
+        }
+
         redirect((string) post('back', 'order'));
     }
 }

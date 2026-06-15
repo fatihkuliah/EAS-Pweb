@@ -8,15 +8,39 @@ use App\Services\CartService;
 
 class CartController
 {
-    public function add(): never
+    public function add(): void
     {
-        (new CartService())->add((int) post('id'), (int) post('qty', 1));
+        $cartService = new CartService();
+        $cartService->add((int) post('id'), (int) post('qty', 1));
+
+        if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'cart' => $cartService->items(),
+                'total' => $cartService->total()
+            ]);
+            exit;
+        }
+
         redirect((string) post('back', 'order'));
     }
 
-    public function update(): never
+    public function update(): void
     {
-        (new CartService())->update((int) post('id'), (int) post('qty'));
+        $cartService = new CartService();
+        $cartService->update((int) post('id'), (int) post('qty'));
+
+        if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'cart' => $cartService->items(),
+                'total' => $cartService->total()
+            ]);
+            exit;
+        }
+
         redirect('order');
     }
 }

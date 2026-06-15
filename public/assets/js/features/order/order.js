@@ -18,17 +18,24 @@ function cariCart(id) {
 
 function tambahCart(id) {
   const cartItem = cariCart(id);
-  if (cartItem) {
-    MieME.updateCart(id, cartItem.qty + 1);
-  } else {
-    MieME.addCart(id, 1);
-  }
+  const promise = cartItem 
+    ? MieME.updateCart(id, cartItem.qty + 1)
+    : MieME.addCart(id, 1);
+
+  promise.then((newCart) => {
+    cart = newCart;
+    renderCart();
+  });
 }
 
 function kurangCart(id) {
   const cartItem = cariCart(id);
   if (!cartItem) return;
-  MieME.updateCart(id, cartItem.qty - 1);
+  
+  MieME.updateCart(id, cartItem.qty - 1).then((newCart) => {
+    cart = newCart;
+    renderCart();
+  });
 }
 
 function renderMenu() {
@@ -133,5 +140,8 @@ renderMenu();
 renderCart();
 
 function toggleFavorit(id, button) {
-  MieME.toggleFavorite(id);
+  MieME.toggleFavorite(id).then((newFavorites) => {
+    const isFav = newFavorites.map(f => Number(f.id)).includes(Number(id));
+    button.classList.toggle('active', isFav);
+  });
 }
