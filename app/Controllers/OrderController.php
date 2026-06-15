@@ -9,6 +9,13 @@ use App\Services\OrderService;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        if (\App\Models\User::current() === null) {
+            redirect('auth');
+        }
+    }
+
     public function index(): void
     {
         $this->view('orders', [

@@ -11,6 +11,13 @@ use App\Services\PaymentService;
 
 class PaymentController extends Controller
 {
+    public function __construct()
+    {
+        if (\App\Models\User::current() === null) {
+            redirect('auth');
+        }
+    }
+
     public function index(): void
     {
         $checkout = new CheckoutService();

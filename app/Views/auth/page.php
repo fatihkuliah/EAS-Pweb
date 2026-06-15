@@ -1,6 +1,9 @@
 <section class="order-page position-relative overflow-hidden">
       <img src="assets/images/aboutus atas kanan.svg" alt="" class="aboutus-atas-kanan position-absolute z-0" />
       <div class="container position-relative z-1">
+        <div class="nav-order position-absolute" style="top: 20px; left: 20px; z-index: 10;">
+          <a class="order-back text-decoration-none" href="<?= url("") ?>">Back</a>
+        </div>
         <div class="row py-5 justify-content-center">
           <div class="col-lg-7 text-center">
             <div class="judul-menu d-inline-block" id="authTitle">Login</div>
@@ -34,7 +37,6 @@
                 </div>
                 <button class="checkout-btn w-100 mt-3" type="submit" id="authSubmit">Login</button>
               </form>
-              <p class="form-note mt-4 mb-0" id="authNote">Demo login akan menyimpan akun di browser.</p>
             </div>
           </div>
         </div>
