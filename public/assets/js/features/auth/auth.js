@@ -38,14 +38,20 @@ authForm.addEventListener('submit', (event) => {
     return;
   }
 
-  MieME.write(MieME.keys.user, {
-    nama: mode == 'register' ? name : 'Customer MieME',
-    email,
-    telepon: '081234567890',
-    alamat: 'Jl. Jendral Sudirman No. 1, Jakarta',
-    avatar: '',
-  });
-  window.location.href = 'profile';
+  const formData = new FormData();
+  formData.append('mode', mode);
+  formData.append('email', email);
+  formData.append('password', password);
+  formData.append('nama', name);
+
+  fetch('auth', { method: 'POST', body: formData })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = 'profile';
+      } else {
+        alert('Gagal melakukan autentikasi.');
+      }
+    });
 });
 
 renderMode();

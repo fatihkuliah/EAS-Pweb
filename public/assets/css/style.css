@@ -1585,6 +1585,12 @@ footer {
   cursor: not-allowed;
 }
 
+.nav-order {
+  top: 36px;
+  right: 38px;
+  z-index: 20;
+}
+
 .checkout-alert {
   display: none;
   position: fixed;

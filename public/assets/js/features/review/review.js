@@ -22,12 +22,21 @@ function setRating(value) {
 
 reviewForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  MieME.saveReview(order.id, {
-    rating,
-    komentar: document.querySelector('#reviewComment').value.trim(),
-  });
-  reviewForm.classList.add('d-none');
-  reviewSuccess.classList.remove('d-none');
+
+  const formData = new FormData();
+  formData.append('order_id', order.id);
+  formData.append('rating', rating);
+  formData.append('komentar', document.querySelector('#reviewComment').value.trim());
+
+  fetch('review', { method: 'POST', body: formData })
+    .then((response) => {
+      if (response.ok) {
+        reviewForm.classList.add('d-none');
+        reviewSuccess.classList.remove('d-none');
+      } else {
+        alert('Gagal mengirim review.');
+      }
+    });
 });
 
 renderRating();

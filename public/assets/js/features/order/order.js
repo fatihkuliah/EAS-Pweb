@@ -12,41 +12,23 @@ function rupiah(angka) {
   return MieME.rupiah(angka);
 }
 
-function simpanCart() {
-  MieME.write(MieME.keys.cart, cart);
-}
-
 function cariCart(id) {
   return cart.find((item) => item.id == id);
 }
 
 function tambahCart(id) {
-  const menu = menus.find((item) => item.id == id);
   const cartItem = cariCart(id);
-
   if (cartItem) {
-    cartItem.qty += 1;
+    MieME.updateCart(id, cartItem.qty + 1);
   } else {
-    cart.push({ ...menu, qty: 1 });
+    MieME.addCart(id, 1);
   }
-
-  simpanCart();
-  renderCart();
 }
 
 function kurangCart(id) {
   const cartItem = cariCart(id);
-
   if (!cartItem) return;
-
-  cartItem.qty -= 1;
-
-  if (cartItem.qty <= 0) {
-    cart = cart.filter((item) => item.id != id);
-  }
-
-  simpanCart();
-  renderCart();
+  MieME.updateCart(id, cartItem.qty - 1);
 }
 
 function renderMenu() {
@@ -84,7 +66,7 @@ function renderMenu() {
                       <h2>${rupiah(menu.harga)}</h2>
                     </div>
                     <div class="d-flex gap-2">
-                      <button class="fav-order ${MieME.favorites().includes(menu.id) ? 'active' : ''}" onclick="toggleFavorit(${menu.id}, this)">♥</button>
+                      <button class="fav-order ${MieME.favorites().map(f => Number(f.id)).includes(Number(menu.id)) ? 'active' : ''}" onclick="toggleFavorit(${menu.id}, this)">♥</button>
                       <button class="tambah-order" onclick="tambahCart(${menu.id})">Tambah</button>
                     </div>
                   </div>
@@ -151,6 +133,5 @@ renderMenu();
 renderCart();
 
 function toggleFavorit(id, button) {
-  const next = MieME.toggleFavorite(id);
-  button.classList.toggle('active', next.includes(id));
+  MieME.toggleFavorite(id);
 }

@@ -1,0 +1,4 @@
+.env
+.codex
+/public/assets/uploads/receipts/*
+/public/assets/uploads/avatars/*

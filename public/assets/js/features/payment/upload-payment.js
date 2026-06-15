@@ -27,8 +27,23 @@ receiptInput.addEventListener('change', () => {
 
 uploadForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (!receipt) return;
-  MieME.orderFromCheckout(receipt);
-  uploadForm.classList.add('d-none');
-  successBox.classList.remove('d-none');
+  const file = receiptInput.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append('receipt', file);
+
+  fetch('upload-payment', { method: 'POST', body: formData })
+    .then((response) => {
+      if (response.ok) {
+        localStorage.removeItem(MieME.keys.checkout);
+        localStorage.removeItem(MieME.keys.payment);
+        localStorage.removeItem(MieME.keys.cart);
+        
+        uploadForm.classList.add('d-none');
+        successBox.classList.remove('d-none');
+      } else {
+        alert('Gagal mengunggah bukti pembayaran.');
+      }
+    });
 });

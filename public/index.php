@@ -47,7 +47,6 @@ spl_autoload_register(function (string $class): void {
         require $path;
     }
 });
-
 $route = trim(str_replace(base_url(), '', $path), '/');
 $method = $_SERVER['REQUEST_METHOD'] === 'HEAD' ? 'GET' : $_SERVER['REQUEST_METHOD'];
 $routes = require BASE_PATH . '/config/routes.php';
@@ -56,7 +55,7 @@ $handler = $routes[$method][$route] ?? null;
 
 if ($handler === null) {
     http_response_code(404);
-    (new HomeController())->notFound();
+    (new \App\Controllers\HomeController())->notFound();
     exit;
 }
 

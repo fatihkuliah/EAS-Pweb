@@ -12,7 +12,3 @@ function storage_path(string $path = ''): string
     return base_path('storage' . ($path ? '/' . ltrim($path, '/') : ''));
 }
 
-function data_file(string $name): array
-{
-    return require base_path('data/' . $name . '.php');
-}

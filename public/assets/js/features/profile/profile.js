@@ -26,17 +26,32 @@ avatarInput.addEventListener('change', () => {
 
 profileForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  MieME.write(MieME.keys.user, {
-    nama: document.querySelector('#profileName').value.trim(),
-    email: document.querySelector('#profileEmail').value.trim(),
-    telepon: document.querySelector('#profilePhone').value.trim(),
-    alamat: document.querySelector('#profileAddress').value.trim(),
-    avatar: avatarPreview.src,
-  });
-  alert('Profil berhasil disimpan.');
+
+  const formData = new FormData();
+  formData.append('nama', document.querySelector('#profileName').value.trim());
+  formData.append('email', document.querySelector('#profileEmail').value.trim());
+  formData.append('telepon', document.querySelector('#profilePhone').value.trim());
+  formData.append('alamat', document.querySelector('#profileAddress').value.trim());
+  
+  if (avatarInput.files[0]) {
+    formData.append('avatar', avatarInput.files[0]);
+  }
+
+  fetch('profile', { method: 'POST', body: formData })
+    .then((response) => {
+      if (response.ok) {
+        alert('Profil berhasil disimpan.');
+        window.location.reload();
+      } else {
+        alert('Gagal memperbarui profil.');
+      }
+    });
 });
 
 logoutBtn.addEventListener('click', () => {
-  localStorage.removeItem(MieME.keys.user);
-  window.location.href = '';
+  fetch('logout', { method: 'POST' })
+    .then(() => {
+      localStorage.removeItem(MieME.keys.user);
+      window.location.href = '';
+    });
 });

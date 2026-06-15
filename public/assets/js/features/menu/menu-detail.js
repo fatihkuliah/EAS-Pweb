@@ -7,7 +7,7 @@ let qty = 1;
 detailName.innerHTML = menu.nama;
 
 function render() {
-  const isFavorite = MieME.favorites().includes(menu.id);
+  const isFavorite = MieME.favorites().map(f => Number(f.id)).includes(Number(menu.id));
   menuDetail.innerHTML = `
     <div class="col-lg-6">
       <div class="detail-image-box"><img src="${menu.gambar}" alt="${menu.nama}" /></div>
@@ -43,12 +43,10 @@ function ubahQty(value) {
 
 function favorit() {
   MieME.toggleFavorite(menu.id);
-  render();
 }
 
 function keranjang() {
   MieME.addCart(menu.id, qty);
-  window.location.href = 'order';
 }
 
 render();

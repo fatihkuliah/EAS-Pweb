@@ -24,14 +24,24 @@ checkoutTotal.innerHTML = MieME.rupiah(MieME.totalCart(cart));
 
 checkoutForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  MieME.write(MieME.keys.checkout, {
-    items: cart,
-    total: MieME.totalCart(cart),
-    penerima: document.querySelector('#penerima').value.trim(),
-    telepon: document.querySelector('#telepon').value.trim(),
-    alamat: document.querySelector('#alamat').value.trim(),
-    catatan: document.querySelector('#catatan').value.trim(),
-    tanggal: new Date().toISOString(),
-  });
-  window.location.href = 'payment';
+
+  const formData = new FormData();
+  formData.append('penerima', document.querySelector('#penerima').value.trim());
+  formData.append('telepon', document.querySelector('#telepon').value.trim());
+  formData.append('alamat', document.querySelector('#alamat').value.trim());
+  formData.append('catatan', document.querySelector('#catatan').value.trim());
+
+  fetch('checkout', { method: 'POST', body: formData })
+    .then(() => {
+      MieME.write(MieME.keys.checkout, {
+        items: cart,
+        total: MieME.totalCart(cart),
+        penerima: document.querySelector('#penerima').value.trim(),
+        telepon: document.querySelector('#telepon').value.trim(),
+        alamat: document.querySelector('#alamat').value.trim(),
+        catatan: document.querySelector('#catatan').value.trim(),
+        tanggal: new Date().toISOString(),
+      });
+      window.location.href = 'payment';
+    });
 });

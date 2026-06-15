@@ -13,6 +13,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script>
+      window.MieMEDatabaseData = {
+          menus: <?= json_encode(\App\Models\Menu::all()) ?>,
+          user: <?= json_encode(\App\Models\User::current()) ?>,
+          orders: <?= json_encode(\App\Models\Order::all()) ?>,
+          favorites: <?= json_encode(\App\Models\Menu::favorites()) ?>,
+          cart: <?= json_encode(\App\Models\Cart::items()) ?>,
+          cartTotal: <?= json_encode(\App\Models\Cart::total()) ?>,
+      };
+    </script>
   </head>
   <body style="font-family: Montserrat; background-color: #101010">
     <?php require $viewFile; ?>

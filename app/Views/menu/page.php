@@ -12,9 +12,7 @@
           </div>
 
           <div class="d-lg-inline-block d-none nav-order position-absolute">
-            <a style="text-decoration: none" href="<?= url("") ?>">
-              <p class="m-0 my-2 mx-3">Back</p>
-            </a>
+            <a class="order-back text-decoration-none" href="<?= url("") ?>">Back</a>
           </div>
 
           <div class="row align-content-end order-landingcon gap-4">

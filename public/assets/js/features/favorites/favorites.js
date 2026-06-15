@@ -1,7 +1,7 @@
 const favoriteList = document.querySelector('#favoriteList');
 
 function renderFavorites() {
-  const items = MieME.menus.filter((menu) => MieME.favorites().includes(menu.id));
+  const items = MieME.favorites();
   if (!items.length) {
     favoriteList.innerHTML = '<div class="col-12"><div class="detail-box text-center"><h1>Belum ada favorit</h1><p>Simpan menu dari katalog dengan tombol hati.</p></div></div>';
     return;
@@ -30,12 +30,10 @@ function renderFavorites() {
 
 function hapus(id) {
   MieME.toggleFavorite(id);
-  renderFavorites();
 }
 
 function tambah(id) {
   MieME.addCart(id);
-  window.location.href = 'order';
 }
 
 renderFavorites();
