@@ -42,11 +42,15 @@ function ubahQty(value) {
 }
 
 function favorit() {
-  MieME.toggleFavorite(menu.id);
+  MieME.toggleFavorite(menu.id).then(() => {
+    render();
+  });
 }
 
 function keranjang() {
-  MieME.addCart(menu.id, qty);
+  MieME.addCart(menu.id, qty).then(() => {
+    alert('Menu berhasil ditambahkan ke keranjang!');
+  });
 }
 
 render();

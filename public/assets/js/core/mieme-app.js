@@ -34,9 +34,18 @@ const MieME = (() => {
     const formData = new FormData();
     formData.append('id', id);
     formData.append('qty', qty);
-    fetch('cart/add', { method: 'POST', body: formData })
-      .then(() => {
-        window.location.reload();
+    return fetch('cart/add', { 
+      method: 'POST', 
+      headers: { 'Accept': 'application/json' },
+      body: formData 
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (window.MieMEDatabaseData) {
+          window.MieMEDatabaseData.cart = data.cart;
+          window.MieMEDatabaseData.cartTotal = data.total;
+        }
+        return data.cart;
       });
   }
 
@@ -44,20 +53,36 @@ const MieME = (() => {
     const formData = new FormData();
     formData.append('id', id);
     formData.append('qty', qty);
-    fetch('cart/update', { method: 'POST', body: formData })
-      .then(() => {
-        window.location.reload();
+    return fetch('cart/update', { 
+      method: 'POST', 
+      headers: { 'Accept': 'application/json' },
+      body: formData 
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (window.MieMEDatabaseData) {
+          window.MieMEDatabaseData.cart = data.cart;
+          window.MieMEDatabaseData.cartTotal = data.total;
+        }
+        return data.cart;
       });
   }
 
   function toggleFavorite(id) {
     const formData = new FormData();
     formData.append('id', id);
-    fetch('favorite/toggle', { method: 'POST', body: formData })
-      .then(() => {
-        window.location.reload();
+    return fetch('favorite/toggle', { 
+      method: 'POST', 
+      headers: { 'Accept': 'application/json' },
+      body: formData 
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (window.MieMEDatabaseData) {
+          window.MieMEDatabaseData.favorites = data.favorites;
+        }
+        return data.favorites;
       });
-    return favorites();
   }
 
   function orderFromCheckout(receipt = '') {
