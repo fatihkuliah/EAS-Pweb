@@ -2,7 +2,12 @@
 
 declare(strict_types=1);
 
-session_start();
+session_start([
+    'cookie_lifetime' => 86400,
+    'cookie_secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+    'cookie_httponly' => true,
+    'cookie_samesite' => 'Lax',
+]);
 
 define('BASE_PATH', dirname(__DIR__));
 

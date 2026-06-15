@@ -34,23 +34,15 @@
             <li class="nav-item nav-hover-7 d-flex align-items-center">
               <a style="padding: 0px" class="nav-link text-black" href="#faq"><p class="nav-color-2 m-auto my-2">FAQ</p></a>
             </li>
-            <li class="nav-item nav-hover-7 d-flex align-items-center">
-              <a style="padding: 0px" class="nav-link text-black" href="<?= url("orders") ?>"><p class="nav-color-2 m-auto my-2">Orders</p></a>
-            </li>
-            <li class="nav-item nav-hover-7 d-flex align-items-center">
-              <a style="padding: 0px" class="nav-link text-black" href="<?= url("profile") ?>"><p class="nav-color-2 m-auto my-2">Profile</p></a>
-            </li>
-            <li class="nav-item nav-hover-7 d-flex align-items-center d-lg-none">
-              <a style="padding: 0px" class="nav-link text-black" href="<?= url("order") ?>"><p class="nav-color-2 m-auto my-2">Order</p></a>
-            </li>
-            <li class="nav-item nav-hover-7 d-flex align-items-center d-lg-none">
-              <a style="padding: 0px" class="nav-link text-black" href="<?= url("auth") ?>"><p class="nav-color-2 m-auto my-2">Login</p></a>
-            </li>
           </ul>
         </div>
         <div class="navbar-actions d-none d-lg-flex">
           <a href="<?= url("order") ?>" class="navbar-action-btn navbar-order-btn text-decoration-none">Order</a>
-          <a href="<?= url("auth") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">Login</a>
+          <?php if (\App\Models\User::current()) : ?>
+            <a href="<?= url("profile") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">Profile</a>
+          <?php else : ?>
+            <a href="<?= url("auth") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">Login</a>
+          <?php endif; ?>
         </div>
       </div>
     </nav>

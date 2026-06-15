@@ -46,11 +46,16 @@ authForm.addEventListener('submit', (event) => {
 
   fetch('auth', { method: 'POST', body: formData })
     .then((response) => {
-      if (response.ok) {
-        window.location.href = 'profile';
-      } else {
-        alert('Gagal melakukan autentikasi.');
-      }
+      return response.json().then((data) => {
+        if (response.ok) {
+          window.location.href = 'profile';
+        } else {
+          alert(data.message || 'Gagal melakukan autentikasi.');
+        }
+      });
+    })
+    .catch(() => {
+      alert('Terjadi kesalahan jaringan.');
     });
 });
 

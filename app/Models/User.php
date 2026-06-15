@@ -22,7 +22,6 @@ class User
             $user = $stmt->fetch();
 
             if ($user) {
-                // Map db columns to existing view keys if necessary
                 return [
                     'user_id' => (int) $user['user_id'],
                     'nama' => $user['name'],
@@ -30,7 +29,6 @@ class User
                     'telepon' => $user['phone'],
                     'alamat' => $user['address'],
                     'avatar' => $user['profile_image'] ?: 'assets/images/user.png',
-                    // Keep db columns
                     'name' => $user['name'],
                     'email_address' => $user['email'],
                     'phone' => $user['phone'],
@@ -39,10 +37,77 @@ class User
                 ];
             }
         } catch (\Throwable $e) {
-            // Silence DB exception and fallback to session if DB is not configured yet
+            // DB fallback
         }
 
         return $_SESSION['user'] ?? null;
+    }
+
+    public static function register(string $name, string $email, string $password): bool
+    {
+        try {
+            $db = Database::connect();
+            
+            // Check if email already exists
+            $stmt = $db->prepare('SELECT 1 FROM users WHERE email = ?');
+            $stmt->execute([$email]);
+            if ($stmt->fetch()) {
+                return false;
+            }
+
+            $hash = password_hash($password, PASSWORD_BCRYPT);
+            $phone = '';
+            $address = '';
+            $avatar = 'assets/images/user.png';
+
+            $insertStmt = $db->prepare('
+                INSERT INTO users (name, email, password_hash, phone, address, profile_image)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ');
+            $insertStmt->execute([$name, $email, $hash, $phone, $address, $avatar]);
+            $userId = (int) $db->lastInsertId();
+
+            session_regenerate_id(true);
+            $_SESSION['user'] = [
+                'user_id' => $userId,
+                'nama' => $name,
+                'email' => $email,
+                'telepon' => $phone,
+                'alamat' => $address,
+                'avatar' => $avatar,
+            ];
+
+            return true;
+        } catch (\Throwable $e) {
+            return false;
+        }
+    }
+
+    public static function login(string $email, string $password): bool
+    {
+        try {
+            $db = Database::connect();
+            $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
+            $stmt->execute([$email]);
+            $user = $stmt->fetch();
+
+            if ($user && password_verify($password, $user['password_hash'])) {
+                session_regenerate_id(true);
+                $_SESSION['user'] = [
+                    'user_id' => (int) $user['user_id'],
+                    'nama' => $user['name'],
+                    'email' => $user['email'],
+                    'telepon' => $user['phone'] ?: '',
+                    'alamat' => $user['address'] ?: '',
+                    'avatar' => $user['profile_image'] ?: 'assets/images/user.png',
+                ];
+                return true;
+            }
+        } catch (\Throwable $e) {
+            // DB fallback
+        }
+
+        return false;
     }
 
     public static function save(array $data): void
@@ -80,7 +145,7 @@ class User
                 $userId = (int) $db->lastInsertId();
             }
         } catch (\Throwable $e) {
-            // DB error (e.g. not migrated yet) - keep fallback session logic
+            // DB fallback
         }
 
         $_SESSION['user'] = [
@@ -96,5 +161,7 @@ class User
     public static function logout(): void
     {
         unset($_SESSION['user']);
+        session_destroy();
+        session_start();
     }
 }

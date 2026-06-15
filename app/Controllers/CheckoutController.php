@@ -12,6 +12,13 @@ use App\Services\OrderService;
 
 class CheckoutController extends Controller
 {
+    public function __construct()
+    {
+        if (User::current() === null) {
+            redirect('auth');
+        }
+    }
+
     public function index(): void
     {
         $cart = new CartService();
