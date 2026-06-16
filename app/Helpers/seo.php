@@ -77,7 +77,7 @@ function default_seo(): array
     return [
         'title' => 'MieME - Mie Premium Siap Pesan',
         'description' => 'MieME menyajikan mie premium, minuman segar, dan pengalaman pesan online yang praktis untuk dinikmati bersama keluarga.',
-        'image' => 'assets/images/Mockup.png',
+        'image' => 'assets/images/Mockup.jpg',
         'image_width' => 1920,
         'image_height' => 1080,
         'type' => 'website',
@@ -160,7 +160,7 @@ function organization_schema(): array
         'name' => 'MieME',
         'url' => absolute_url(),
         'logo' => absolute_url('assets/images/favicon/android-chrome-512x512.png'),
-        'image' => absolute_url('assets/images/Mockup.png'),
+        'image' => absolute_url('assets/images/Mockup.jpg'),
     ];
 }
 
@@ -181,7 +181,7 @@ function restaurant_schema(): array
         '@type' => ['Restaurant', 'LocalBusiness'],
         'name' => 'MieME',
         'url' => absolute_url(),
-        'image' => absolute_url('assets/images/Mockup.png'),
+        'image' => absolute_url('assets/images/Mockup.jpg'),
         'servesCuisine' => ['Mie', 'Indonesian'],
         'priceRange' => 'Rp8.000-Rp35.000',
         'aggregateRating' => [

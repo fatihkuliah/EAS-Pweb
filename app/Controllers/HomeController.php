@@ -39,7 +39,7 @@ class HomeController extends Controller
                 'title' => 'MieME - Mie Premium Siap Pesan Online',
                 'description' => $description,
                 'url' => absolute_url(),
-                'image' => 'assets/images/Mockup.png',
+                'image' => 'assets/images/Mockup.jpg',
                 'schema' => [
                     organization_schema(),
                     website_schema(),
