@@ -6,6 +6,7 @@
             <p class="menu-tagline mt-3"><span>Semua transaksi anda</span><br />Cek status, lihat detail, unduh invoice, ekspor CSV, dan beri review.</p>
           </div>
           <div class="col-lg-4 d-flex align-items-center justify-content-lg-end gap-2">
+            <a href="<?= url("") ?>" class="order-back text-decoration-none">Kembali</a>
             <button class="order-back" id="exportCsv">Export CSV</button>
             <a href="<?= url("order") ?>" class="order-back text-decoration-none">Order Lagi</a>
           </div>
