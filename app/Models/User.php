@@ -28,12 +28,10 @@ class User
                     'email' => $user['email'],
                     'telepon' => $user['phone'],
                     'alamat' => $user['address'],
-                    'avatar' => $user['profile_image'] ?: 'assets/images/user.png',
                     'name' => $user['name'],
                     'email_address' => $user['email'],
                     'phone' => $user['phone'],
                     'address' => $user['address'],
-                    'profile_image' => $user['profile_image'],
                     'role' => $user['role'] ?: 'customer',
                 ];
             }
@@ -59,14 +57,13 @@ class User
             $hash = password_hash($password, PASSWORD_BCRYPT);
             $phone = '';
             $address = '';
-            $avatar = 'assets/images/user.png';
             $role = 'customer';
 
             $insertStmt = $db->prepare('
-                INSERT INTO users (name, email, password_hash, phone, address, profile_image, role)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO users (name, email, password_hash, phone, address, role)
+                VALUES (?, ?, ?, ?, ?, ?)
             ');
-            $insertStmt->execute([$name, $email, $hash, $phone, $address, $avatar, $role]);
+            $insertStmt->execute([$name, $email, $hash, $phone, $address, $role]);
             $userId = (int) $db->lastInsertId();
 
             session_regenerate_id(true);
@@ -76,7 +73,6 @@ class User
                 'email' => $email,
                 'telepon' => $phone,
                 'alamat' => $address,
-                'avatar' => $avatar,
                 'role' => $role,
             ];
 
@@ -102,7 +98,6 @@ class User
                     'email' => $user['email'],
                     'telepon' => $user['phone'] ?: '',
                     'alamat' => $user['address'] ?: '',
-                    'avatar' => $user['profile_image'] ?: 'assets/images/user.png',
                     'role' => $user['role'] ?: 'customer',
                 ];
                 return true;
@@ -120,7 +115,6 @@ class User
         $email = trim((string) ($data['email'] ?? 'customer@mieme.test'));
         $phone = trim((string) ($data['telepon'] ?? $data['phone'] ?? '081234567890'));
         $address = trim((string) ($data['alamat'] ?? $data['address'] ?? 'Jl. Jendral Sudirman No. 1, Jakarta'));
-        $avatar = $data['avatar'] ?? $data['profile_image'] ?? 'assets/images/user.png';
         $role = $data['role'] ?? null;
 
         $userId = null;
@@ -138,18 +132,18 @@ class User
                 $finalRole = $role ?? $existing['role'] ?? 'customer';
                 $updateStmt = $db->prepare('
                     UPDATE users 
-                    SET name = ?, phone = ?, address = ?, profile_image = ?, role = ? 
+                    SET name = ?, phone = ?, address = ?, role = ? 
                     WHERE email = ?
                 ');
-                $updateStmt->execute([$name, $phone, $address, $avatar, $finalRole, $email]);
+                $updateStmt->execute([$name, $phone, $address, $finalRole, $email]);
                 $userId = (int) $existing['user_id'];
             } else {
                 $finalRole = $role ?? 'customer';
                 $insertStmt = $db->prepare('
-                    INSERT INTO users (name, email, password_hash, phone, address, profile_image, role)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO users (name, email, password_hash, phone, address, role)
+                    VALUES (?, ?, ?, ?, ?, ?)
                 ');
-                $insertStmt->execute([$name, $email, password_hash('password', PASSWORD_DEFAULT), $phone, $address, $avatar, $finalRole]);
+                $insertStmt->execute([$name, $email, password_hash('password', PASSWORD_DEFAULT), $phone, $address, $finalRole]);
                 $userId = (int) $db->lastInsertId();
             }
         } catch (\Throwable $e) {
@@ -162,7 +156,6 @@ class User
             'email' => $email,
             'telepon' => $phone,
             'alamat' => $address,
-            'avatar' => $avatar,
             'role' => $finalRole,
         ];
     }

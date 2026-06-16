@@ -13,7 +13,6 @@ return new class {
                 password_hash VARCHAR(255) NOT NULL,
                 phone VARCHAR(20) DEFAULT NULL,
                 address TEXT DEFAULT NULL,
-                profile_image VARCHAR(255) DEFAULT 'assets/images/user.png',
                 role VARCHAR(20) DEFAULT 'customer',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

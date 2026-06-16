@@ -630,7 +630,7 @@ class AdminController extends Controller
         $role = trim((string) ($_GET['role'] ?? ''));
         
         $query = "
-            SELECT u.user_id, u.name, u.email, u.role, u.profile_image,
+            SELECT u.user_id, u.name, u.email, u.role,
                    COUNT(o.order_id) as order_count,
                    IFNULL(SUM(o.total_price), 0) as total_spent
             FROM users u
@@ -819,8 +819,8 @@ class AdminController extends Controller
         $stmt = $db->prepare("
             SELECT o.order_number as `No. Pesanan`, 
                    u.name as `Nama Customer`, 
-                   o.penerima as `Nama Penerima`, 
-                   o.phone_number as `No. Telepon`,
+                   o.recipient_name as `Nama Penerima`, 
+                   o.recipient_phone as `No. Telepon`,
                    o.shipping_address as `Alamat Pengiriman`,
                    o.total_price as `Total Pembayaran`,
                    o.status as `Status Pesanan`,

@@ -38,7 +38,7 @@ require __DIR__ . '/layout_start.php';
                     <a href="<?= url('admin/users') ?>" class="btn-close" aria-label="Close"></a>
                 </div>
                 <div class="text-center mb-4">
-                    <div class="mb-2 mx-auto" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; background-image: url('<?= asset($userDetail['profile_image'] ?? 'assets/images/user.png') ?>'); background-size: cover; background-position: center;"></div>
+                    <i class="bi bi-person-circle text-dark mb-2 d-inline-block" style="font-size: 64px;"></i>
                     <h5 class="m-0" style="font-weight: 800; color: #000 !important;"><?= e($userDetail['name']) ?></h5>
                     <span class="badge-brutalist bg-dark text-white mt-1"><?= e($userDetail['role']) ?></span>
                 </div>
@@ -110,7 +110,7 @@ require __DIR__ . '/layout_start.php';
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center gap-2">
-                                            <div style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid #000; background-image: url('<?= asset($user['profile_image'] ?: 'assets/images/user.png') ?>'); background-size: cover; background-position: center;"></div>
+                                            <i class="bi bi-person-circle text-dark" style="font-size: 20px;"></i>
                                             <strong style="font-weight: 800; color: #000 !important;"><?= e($user['name']) ?></strong>
                                         </div>
                                     </td>

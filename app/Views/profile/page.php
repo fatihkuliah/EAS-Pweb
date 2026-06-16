@@ -13,11 +13,7 @@
         <div class="row pb-5 justify-content-center">
           <div class="col-lg-6">
             <form class="form-box" id="profileForm">
-              <div class="profile-avatar">
-                <img id="avatarPreview" src="assets/images/user.png" alt="Profil" />
-                <label for="avatarInput">Upload Foto</label>
-                <input type="file" id="avatarInput" accept="image/*" hidden />
-              </div>
+
               <div class="form-field"><label>Nama Lengkap</label><input id="profileName" required /></div>
               <div class="form-field"><label>Email</label><input id="profileEmail" type="email" required /></div>
               <div class="form-field"><label>Nomor Telepon</label><input id="profilePhone" required /></div>

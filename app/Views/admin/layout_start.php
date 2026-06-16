@@ -64,7 +64,7 @@ $activePage = $activePage ?? 'dashboard';
             <h4 class="m-0 text-white font-weight-800" style="font-family: Montserrat; font-weight: 800;"><?= $pageTitle ?? 'Admin Dashboard' ?></h4>
             <div class="d-flex align-items-center gap-3">
                 <span class="text-white d-none d-sm-inline" style="font-weight: 600;">Halo, <?= e($admin['nama'] ?? 'Admin') ?>!</span>
-                <div style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #ff9533; background-image: url('<?= asset($admin['avatar'] ?? 'assets/images/user.png') ?>'); background-size: cover; background-position: center;"></div>
+                <i class="bi bi-person-circle text-white" style="font-size: 32px;"></i>
             </div>
         </div>
 

@@ -34,8 +34,8 @@ class Seeder
             // 2. Seed Users
             echo "Seeding users...\n";
             $stmt = $this->db->prepare('
-                INSERT INTO users (name, email, password_hash, phone, address, profile_image, role) 
-                VALUES (:name, :email, :password_hash, :phone, :address, :profile_image, :role)
+                INSERT INTO users (name, email, password_hash, phone, address, role) 
+                VALUES (:name, :email, :password_hash, :phone, :address, :role)
                 ON DUPLICATE KEY UPDATE user_id=LAST_INSERT_ID(user_id)
             ');
             $stmt->execute([
@@ -44,7 +44,6 @@ class Seeder
                 'password_hash' => password_hash('password', PASSWORD_DEFAULT),
                 'phone' => '081234567890',
                 'address' => 'Jl. Jendral Sudirman No. 1, Jakarta',
-                'profile_image' => 'assets/images/user.png',
                 'role' => 'customer'
             ]);
             $userId = (int) $this->db->lastInsertId();
@@ -55,7 +54,6 @@ class Seeder
                 'password_hash' => password_hash('admin123', PASSWORD_DEFAULT),
                 'phone' => '081234567891',
                 'address' => 'Kantor Pusat MieME',
-                'profile_image' => 'assets/images/user.png',
                 'role' => 'admin'
             ]);
 
