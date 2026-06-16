@@ -1,179 +1,106 @@
-# MieME Native PHP
+# MieME Application
 
-Refactor dari HTML statis ke PHP native dengan struktur MVC sederhana, service layer ringan, dan asset publik yang rapi.
+A web-based food ordering system built with a native PHP MVC architecture. It provides a seamless experience for customers to browse menus, manage their carts, and place orders, while offering a comprehensive administrative dashboard for managing the catalog, verifying payments, and tracking sales.
 
-## Cara menjalankan
+## Features
 
-### 1. Jalankan PHP Dev Server
+- **MVC Architecture**: Clear separation of concerns utilizing Models, Views, and Controllers.
+- **Role-Based Access Control**: Differentiated interfaces and functionalities for Customers and Administrators.
+- **Customer Portal**:
+  - Menu catalog with categorization and search functionality.
+  - Shopping cart and seamless checkout system.
+  - Payment processing supporting QRIS and manual bank transfers with proof of payment upload.
+  - Order history tracking and review submission.
+- **Admin Dashboard**:
+  - Key Performance Indicators (KPIs) for daily revenue, total orders, and pending verifications.
+  - Menu and category management (Create, Read, Update, Delete).
+  - Payment verification system (Approve or Reject uploaded transaction receipts).
+  - Order status management (Processing, Shipping, Completed).
+  - User management and customer review moderation.
+- **Custom Database Tools**: Built-in CLI tool (`db.php`) for managing database migrations and seeding.
+- **Secure File Storage**: Uploaded files (such as payment proofs) are securely stored outside the public directory and served via controlled application routes.
+
+## System Requirements
+
+- PHP 8.1 or higher
+- MySQL 5.7+ or MariaDB 10.3+
+- PHP PDO Extension enabled
+
+## Installation and Setup
+
+### 1. Database Configuration
+
+1. Clone the repository and navigate to the project root directory.
+2. Copy the environment configuration template:
+   ```bash
+   cp .env.example .env
+   ```
+3. Open the `.env` file and update it with your local database credentials:
+   ```env
+   DB_HOST=127.0.0.1
+   DB_NAME=mieme_db
+   DB_USER=root
+   DB_PASS=your_database_password
+   ```
+
+### 2. Database Initialization
+
+The application includes a custom CLI utility to manage the database schema and seed initial data.
+
+Run the following command to reset the database, run all schema migrations, and populate it with seed data:
+```bash
+php db.php reset
+```
+
+**Additional Database Commands:**
+- Run Migrations (Create tables): `php db.php migrate`
+- Rollback Migrations (Drop tables): `php db.php rollback`
+- Run Seeders (Insert mock data): `php db.php seed`
+
+### 3. Running the Development Server
+
+To serve the application locally during development, use the built-in PHP development server. It is crucial to set the `public` directory as the document root. This ensures that static assets are served correctly and internal application files remain secure.
+
 ```bash
 php -S localhost:8000 -t public public/index.php
 ```
 
-Lalu buka di browser:
-```text
-http://localhost:8000
-```
-Jangan buka `public/index.php` langsung dari file manager, dan jangan jadikan root project sebagai document root. Asset CSS/gambar disiapkan untuk dilayani dari folder `public`.
+Access the application in your web browser at: `http://localhost:8000`
 
-### 2. Setup Database (MySQL/MariaDB) & Environment Variables (.env)
-1. Salin file `.env.example` menjadi `.env` di root proyek:
-   ```bash
-   cp .env.example .env
-   ```
-2. Buka `.env` dan sesuaikan kredensial koneksi database Anda (host, database name, username, password).
-3. Jalankan perintah migrasi dan seeder untuk menginisialisasi database dan data awal menggunakan CLI helper `db.php` di root proyek:
-   ```bash
-   php db.php reset
-   ```
-   *Perintah `reset` akan melakukan rollback tabel lama (jika ada), menjalankan migrasi tabel baru, dan mengisinya dengan data seeder.*
-
-   **Perintah CLI Database Lainnya:**
-   * Run Migrations (`up`): `php db.php migrate`
-   * Rollback Migrations (`down`): `php db.php rollback`
-   * Run Seeders: `php db.php seed`
-
-## Struktur folder
+## Directory Structure
 
 ```text
 .
-├── README.md
-├── db.php
-├── .env
-├── .env.example
-├── .gitignore
-├── app
-│   ├── Controllers
-│   │   ├── AuthController.php
-│   │   ├── CartController.php
-│   │   ├── CheckoutController.php
-│   │   ├── HomeController.php
-│   │   ├── MenuController.php
-│   │   ├── OrderController.php
-│   │   ├── PaymentController.php
-│   │   └── ProfileController.php
-│   ├── Core
-│   │   ├── Controller.php
-│   │   ├── Database.php
-│   │   └── Env.php
-│   ├── Helpers
-│   │   ├── env.php
-│   │   ├── format.php
-│   │   ├── http.php
-│   │   ├── path.php
-│   │   ├── session.php
-│   │   └── upload.php
-│   ├── Models
-│   │   ├── Cart.php
-│   │   ├── Menu.php
-│   │   ├── Order.php
-│   │   ├── Payment.php
-│   │   └── User.php
-│   ├── Services
-│   │   ├── CartService.php
-│   │   ├── CheckoutService.php
-│   │   ├── OrderService.php
-│   │   └── PaymentService.php
-│   ├── Views
-│   │   ├── auth
-│   │   │   └── page.php
-│   │   ├── checkout
-│   │   │   └── page.php
-│   │   ├── errors
-│   │   │   └── not-found.php
-│   │   ├── favorites
-│   │   │   └── page.php
-│   │   ├── home
-│   │   │   └── page.php
-│   │   ├── layout.php
-│   │   ├── menu
-│   │   │   ├── page.php
-│   │   │   └── detail
-│   │   │       └── page.php
-│   │   ├── orders
-│   │   │   ├── detail.php
-│   │   │   └── page.php
-│   │   ├── partials
-│   │   │   ├── menu_card.php
-│   │   │   └── page_header.php
-│   │   ├── payment
-│   │   │   ├── page.php
-│   │   │   ├── qris.php
-│   │   │   └── upload.php
-│   │   ├── profile
-│   │   │   └── page.php
-│   │   └── review
-│   │       └── page.php
-│   └── helpers.php
-├── archive
-│   └── legacy-static
-│       ├── *.html
-│       ├── *.js
-│       ├── img
-│       ├── style.css
-│       └── mieme.zip
-├── config
-│   ├── app.php
-│   ├── database.php
-│   └── routes.php
-├── database
-│   ├── migrations
-│   │   ├── 2026_06_15_000001_create_users_table.php
-│   │   └── ...
-│   └── seeds
-│       └── seeder.php
-├── public
-│   ├── .htaccess
-│   ├── assets
-│   │   ├── css
-│   │   │   └── style.css
-│   │   ├── images
-│   │   │   ├── favicon
-│   │   │   └── payment
-│   │   └── js
-│   │       ├── core
-│   │       │   └── mieme-app.js
-│   │       └── features
-│   │           ├── auth
-│   │           │   └── auth.js
-│   │           ├── checkout
-│   │           │   └── checkout.js
-│   │           ├── favorites
-│   │           │   └── favorites.js
-│   │           ├── home
-│   │           │   └── home.js
-│   │           ├── menu
-│   │           │   └── menu-detail.js
-│   │           ├── order
-│   │           │   ├── detail-order.js
-│   │           │   ├── order.js
-│   │           │   └── orders.js
-│   │           ├── payment
-│   │           │   ├── payment.js
-│   │           │   ├── qris.js
-│   │           │   └── upload-payment.js
-│   │           ├── profile
-│   │           │   └── profile.js
-│   │           └── review
-│   │               └── review.js
-│   └── index.php
-└── storage
-    ├── exports
-    │   └── .gitkeep
-    ├── invoices
-    │   └── .gitkeep
-    └── uploads
-        └── .gitkeep
+├── README.md                 # Project documentation
+├── db.php                    # CLI tool for database migrations and seeding
+├── .env                      # Environment configuration variables
+├── .env.example              # Template for environment variables
+├── .gitignore                # Git ignore rules to prevent committing sensitive files
+├── app                       # Application core logic (MVC Structure)
+│   ├── Controllers           # Handles incoming HTTP requests and application flow
+│   ├── Core                  # Base framework classes (Controller, Database, Env, Router)
+│   ├── Helpers               # Global utility functions (formatting, path resolution, http)
+│   ├── Models                # Data access layer interacting with the database
+│   ├── Services              # Business logic layer (Cart, Checkout, Payment, Orders)
+│   └── Views                 # Presentation layer (PHP templates and HTML structures)
+├── config                    # Application configurations
+│   ├── app.php               # General application settings
+│   ├── database.php          # Database connection instantiation settings
+│   └── routes.php            # URL routing definitions mapped to specific Controllers
+├── database                  # Database schema definitions
+│   ├── migrations            # PHP scripts to create and modify database tables
+│   └── seeds                 # Scripts to populate the database with initial application data
+├── public                    # Document root accessible by the web server
+│   ├── .htaccess             # Apache configuration for URL rewriting
+│   ├── assets                # Publicly accessible static files (CSS, JS, Images)
+│   └── index.php             # Front controller entry point for all HTTP requests
+└── storage                   # Secure storage for application-generated files
+    ├── exports               # Generated export files (CSV, Reports)
+    ├── invoices              # Generated order invoice documents
+    └── uploads               # User-uploaded files (e.g., payment proofs)
 ```
 
-Catatan: isi gambar di `public/assets/images` dan file legacy di `archive/legacy-static` dipersingkat agar README tidak terlalu panjang.
+## Security and Deployment Notes
 
-## Catatan
-
-- Menggunakan database MySQL/MariaDB dengan sistem migrasi berbasis class PHP (ala Laravel) dan data seeder otomatis.
-- Konfigurasi aplikasi, database, dan routing ada di folder `config/`.
-- Proses bisnis seperti cart, checkout, order, dan payment ada di `app/Services`.
-- Model (`User`, `Menu`, `Order`, `Cart`) telah terintegrasi dengan database MySQL menggunakan PDO, dengan fallback otomatis ke mock data jika koneksi database belum disetup.
-- Upload disimpan di `storage/uploads`, bukan di `public/uploads`.
-- `public/` hanya untuk front controller dan asset yang memang boleh diakses browser.
-- `archive/legacy-static` hanya arsip HTML/JS lama, bukan bagian runtime aplikasi.
-- Struktur view tetap mempertahankan `layout.php` dan `partials/`, dengan halaman berbasis route sederhana.
+- **Document Root**: Always ensure that your production web server (Nginx or Apache) points its document root specifically to the `public/` directory. This prevents direct web access to the `app/` and `config/` directories containing sensitive logic.
+- **Storage Security**: The `storage` directory is intentionally located outside the `public` document root. Files within this directory are served securely via application-controlled routes (`/storage/...` intercepted in `index.php`), ensuring that internal uploads cannot be accessed directly without passing through the application's verification logic.
