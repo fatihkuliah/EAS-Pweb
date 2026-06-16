@@ -394,7 +394,7 @@ class AdminController extends Controller
         
         $image = '';
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $image = upload_file($_FILES['image'], 'menus', ['jpg', 'jpeg', 'png']);
+            $image = storage_public_path(upload_file($_FILES['image'], 'menus', ['jpg', 'jpeg', 'png']));
         }
         
         if ($image === '') {
@@ -404,7 +404,7 @@ class AdminController extends Controller
         
         $db = Database::connect();
         $stmt = $db->prepare("
-            INSERT INTO menus (menu_name, category_id, description, price, stock, portion, serving_time, image, is_available)
+            INSERT INTO menus (menu_name, category_id, description, price, stock, `portion`, serving_time, image, is_available)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
         $stmt->execute([$name, $categoryId, $description, $price, $stock, $portion, $servingTime, $image, $isAvailable]);
@@ -469,17 +469,17 @@ class AdminController extends Controller
             redirect('admin/menus');
         }
         
-        $image = $menu['image'];
+        $image = storage_public_path($menu['image']);
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $newImage = upload_file($_FILES['image'], 'menus', ['jpg', 'jpeg', 'png']);
             if ($newImage !== '') {
-                $image = $newImage;
+                $image = storage_public_path($newImage);
             }
         }
         
         $stmt = $db->prepare("
             UPDATE menus 
-            SET menu_name = ?, category_id = ?, description = ?, price = ?, stock = ?, portion = ?, serving_time = ?, image = ?, is_available = ?
+            SET menu_name = ?, category_id = ?, description = ?, price = ?, stock = ?, `portion` = ?, serving_time = ?, image = ?, is_available = ?
             WHERE menu_id = ?
         ");
         $stmt->execute([$name, $categoryId, $description, $price, $stock, $portion, $servingTime, $image, $isAvailable, $id]);

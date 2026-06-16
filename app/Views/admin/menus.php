@@ -58,7 +58,7 @@ require __DIR__ . '/layout_start.php';
                     <?php foreach ($menus as $m): ?>
                         <tr>
                             <td>
-                                <img src="<?= asset($m['gambar']) ?>" alt="<?= e($m['nama']) ?>" style="width: 60px; height: 60px; object-fit: cover; border: 2px solid #000; border-radius: 10px;">
+                                <img src="<?= asset(storage_public_path($m['gambar'])) ?>" alt="<?= e($m['nama']) ?>" style="width: 60px; height: 60px; object-fit: cover; border: 2px solid #000; border-radius: 10px;">
                             </td>
                             <td>
                                 <strong class="d-block" style="font-weight: 800; font-size: 15px; color: #000 !important;"><?= e($m['nama']) ?></strong>

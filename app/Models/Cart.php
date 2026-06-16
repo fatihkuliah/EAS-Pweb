@@ -31,7 +31,7 @@ class Cart
                         'nama' => $row['menu_name'],
                         'kategori' => $row['category_name'] ?? '',
                         'deskripsi' => '',
-                        'gambar' => $row['image'],
+                        'gambar' => storage_public_path($row['image']),
                         'harga' => (int) $row['price'],
                         'porsi' => $row['portion'],
                         'waktu' => $row['serving_time'],
