@@ -27,6 +27,12 @@ class PaymentController extends Controller
             'title' => 'Payment MieME',
             'checkout' => $checkout->current() ?? ['total' => 0],
             'methods' => $payment->methods(),
+            'seo' => [
+                'title' => 'Payment MieME',
+                'description' => 'Pilih metode pembayaran untuk pesanan MieME.',
+                'url' => absolute_url('payment'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 
@@ -45,6 +51,12 @@ class PaymentController extends Controller
         $this->view('payment/qris', [
             'title' => 'QRIS MieME',
             'checkout' => $checkout->current() ?? ['total' => 0],
+            'seo' => [
+                'title' => 'QRIS MieME',
+                'description' => 'Selesaikan pembayaran pesanan MieME dengan QRIS.',
+                'url' => absolute_url('qris'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 
@@ -57,6 +69,12 @@ class PaymentController extends Controller
             'title' => 'Upload Bukti MieME',
             'checkout' => $checkout->current() ?? ['total' => 0],
             'payment' => $payment->current() ?? ['nama' => 'Metode Pembayaran'],
+            'seo' => [
+                'title' => 'Upload Bukti Pembayaran MieME',
+                'description' => 'Unggah bukti pembayaran untuk menyelesaikan pesanan MieME.',
+                'url' => absolute_url('upload-payment'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 

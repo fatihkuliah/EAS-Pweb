@@ -45,12 +45,12 @@ function renderMenu() {
         <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="${100 + index * 50}">
           <div class="menu-menu order-card row h-100 m-0">
             <div class="col-5 text-start text p-0 d-flex align-items-center justify-content-center order-card-img">
-              <img src="${menu.gambar}" alt="${menu.nama}" />
+              <img src="${MieME.assetUrl(menu.gambar)}" alt="${menu.nama}" width="234" height="325" loading="lazy" decoding="async" />
             </div>
             <div class="col-7">
               <div class="order-card-body d-flex h-100 flex-column justify-content-between">
                 <div>
-                  <a href="menu-detail?id=${menu.id}" class="text-decoration-none"><h1>${menu.nama}</h1></a>
+                  <a href="${MieME.menuUrl(menu)}" class="text-decoration-none"><h3>${menu.nama}</h3></a>
                   <p class="mt-3">${menu.deskripsi}</p>
                 </div>
                 <div>
@@ -99,7 +99,7 @@ function renderCart() {
       .map(
         (item) => `
           <div class="cart-item mx-2">
-            <img src="${item.gambar}" alt="${item.nama}" />
+            <img src="${MieME.assetUrl(item.gambar)}" alt="${item.nama}" width="64" height="64" loading="lazy" decoding="async" />
             <div>
               <h1>${item.nama}</h1>
               <p class="m-0">${rupiah(item.harga)} x ${item.qty}</p>

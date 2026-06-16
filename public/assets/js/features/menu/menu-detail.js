@@ -1,5 +1,6 @@
 const id = new URLSearchParams(window.location.search).get('id');
-const menu = MieME.getMenu(id) || MieME.menus[0];
+const slug = window.location.pathname.split('/').filter(Boolean).pop();
+const menu = window.MieMECurrentMenu || MieME.getMenu(id || slug) || MieME.menus[0];
 const menuDetail = document.querySelector('#menuDetail');
 const detailName = document.querySelector('#detailName');
 let qty = 1;
@@ -10,7 +11,7 @@ function render() {
   const isFavorite = MieME.favorites().map(f => Number(f.id)).includes(Number(menu.id));
   menuDetail.innerHTML = `
     <div class="col-lg-6">
-      <div class="detail-image-box"><img src="${menu.gambar}" alt="${menu.nama}" /></div>
+      <div class="detail-image-box"><img src="${MieME.assetUrl(menu.gambar)}" alt="${menu.nama}" width="234" height="325" decoding="async" /></div>
     </div>
     <div class="col-lg-6 mt-4 mt-lg-0">
       <div class="summary-box h-100">
@@ -21,7 +22,7 @@ function render() {
           <span><i class="bi bi-person-fill"></i> ${menu.porsi}</span>
           <span><i class="bi bi-clock-fill"></i> ${menu.waktu}</span>
         </div>
-        <h1 class="mt-4">${MieME.rupiah(menu.harga * qty)}</h1>
+        <h2 class="mt-4">${MieME.rupiah(menu.harga * qty)}</h2>
         <div class="quantity-row">
           <button onclick="ubahQty(-1)">-</button>
           <span>${qty}</span>

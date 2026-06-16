@@ -16,7 +16,7 @@
         <div class="row pb-5 justify-content-center">
           <div class="col-lg-5">
             <div class="qris-detail-box text-center">
-              <img class="qris-code-img mt-4" src="assets/images/Qris.png" alt="QR Code MieME" />
+              <img class="qris-code-img mt-4" src="assets/images/Qris.png" alt="QR Code pembayaran MieME" width="881" height="1240" decoding="async" />
               <p class="m-0 mt-4">MieME QRIS Payment</p>
               <h1 id="qrisTotal">Rp0</h1>
               <a href="<?= url("payment") ?>" class="order-back text-decoration-none d-inline-block mt-3">Pilih Metode Lain</a>

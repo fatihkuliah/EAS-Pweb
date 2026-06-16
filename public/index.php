@@ -79,6 +79,10 @@ $routes = require BASE_PATH . '/config/routes.php';
 
 $handler = $routes[$method][$route] ?? null;
 
+if ($handler === null && $method === 'GET' && preg_match('#^menu/([^/]+)$#', $route) === 1) {
+    $handler = [\App\Controllers\MenuController::class, 'detail'];
+}
+
 if ($handler === null) {
     http_response_code(404);
     (new \App\Controllers\HomeController())->notFound();

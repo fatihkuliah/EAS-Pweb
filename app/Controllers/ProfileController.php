@@ -19,6 +19,12 @@ class ProfileController extends Controller
             'title' => 'Profil MieME',
             'user' => User::current(),
             'message' => flash(),
+            'seo' => [
+                'title' => 'Profil MieME',
+                'description' => 'Kelola data profil pelanggan MieME.',
+                'url' => absolute_url('profile'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 

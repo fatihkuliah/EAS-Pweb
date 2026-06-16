@@ -109,7 +109,7 @@ if ($curr) {
               <div class="d-flex align-items-center justify-content-center">
                 <p class="welcome-landing d-block" data-aos="zoom-in" data-aos-delay="300">WELCOME TO MIEME</p>
               </div>
-              <div class="tagline-landing mb-3" data-aos="zoom-in" data-aos-delay="500"><span>MieME</span> siap menggugah selera makan anda</div>
+              <h1 class="tagline-landing mb-3" data-aos="zoom-in" data-aos-delay="500"><span>MieME</span> siap menggugah selera makan anda</h1>
               <p class="deskripsi-tagline-landing" data-aos="zoom-in" data-aos-delay="700">
                 Manjakan diri dengan kekayaan rasa dan tekstur memuaskan dari produk mie premium kami. Dibuat dengan bahan-bahan terbaik, mie kami pasti akan memuaskan selera kalian dan membuat kalian ketagihan
               </p>
@@ -118,7 +118,7 @@ if ($curr) {
             <div class="d-flex justify-content-center align-self-end position-relative">
               <img src="assets/images/emot-lope.svg" alt="emot-lope" class="emot-lope position-absolute" />
               <img src="assets/images/king.svg" alt="" class="king position-absolute" />
-              <img class="gambar-landing" src="assets/images/Group 18325.png" alt="" data-aos="fade-up" data-aos-delay="1000" />
+              <img class="gambar-landing" src="assets/images/Group 18325.png" alt="Menu mie premium MieME" width="809" height="466" fetchpriority="high" decoding="async" data-aos="fade-up" data-aos-delay="1000" />
               <div class="tombol-landing d-flex position-absolute gap-2" data-aos="fade-down" data-aos-delay="1500">
                 <a href="<?= url("order") ?>" class="order d-flex align-items-center justify-content-center text-decoration-none text-black">
                   Order
@@ -190,7 +190,7 @@ if ($curr) {
           </div>
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="m-3 py-5 py-lg-3">
-              <img class="img-aboutus" src="assets/images/aboutus.png" alt="mie" data-aos="fade-left" data-aos-delay="10" />
+              <img class="img-aboutus" src="assets/images/aboutus.png" alt="Semangkuk mie MieME dengan bahan premium" width="552" height="439" loading="lazy" decoding="async" data-aos="fade-left" data-aos-delay="10" />
             </div>
           </div>
         </div>
@@ -214,19 +214,19 @@ if ($curr) {
                 <div class="row">
                   <div class="col-md-4 col-6">
                     <div class="text-center p-3">
-                      <h1>1st</h1>
+                      <h3>1st</h3>
                       <p>Pengakuan kualitas bahan terbaik</p>
                     </div>
                   </div>
                   <div class="col-md-4 col-6">
                     <div class="text-center p-3">
-                      <h1>3rd</h1>
+                      <h3>3rd</h3>
                       <p>Mie dengan citra rasa terbaik di asia</p>
                     </div>
                   </div>
                   <div class="col-md-4 col-6">
                     <div class="text-center p-3">
-                      <h1>2nd</h1>
+                      <h3>2nd</h3>
                       <p>Mie dengan citra rasa terbaik di asia</p>
                     </div>
                   </div>
@@ -236,7 +236,7 @@ if ($curr) {
           </div>
           <div class="col-lg-6 order-1">
             <div class="m-3 py-5 py-lg-3">
-              <img class="img-award" src="assets/images/award.png" alt="mie" data-aos="fade-right" data-aos-delay="100" />
+              <img class="img-award" src="assets/images/award.png" alt="Penghargaan kualitas rasa MieME" width="381" height="572" loading="lazy" decoding="async" data-aos="fade-right" data-aos-delay="100" />
             </div>
           </div>
         </div>
@@ -265,12 +265,12 @@ if ($curr) {
             <div class="col-lg-6 my-2 order-2 order-lg-1" data-aos="zoom-in" data-aos-delay="100">
               <div class="menu-menu row h-100 py-">
                 <div class="col-5 text-start text p-0 d-flex align-items-end">
-                  <img src="assets/images/mie1.png" alt="" />
+                  <img src="assets/images/mie1.png" alt="Mie Spesial Sambal Matah MieME" width="234" height="325" loading="lazy" decoding="async" />
                 </div>
                 <div class="col-7">
                   <div class="mx-3 d-flex h-100 flex-column justify-content-center">
                     <div class="pt-5 mt-3">
-                      <h1>Mie Spesial Sambal Matah</h1>
+                      <h3>Mie Spesial Sambal Matah</h3>
                       <p class="mt-3">Nikmati kelezatan rasa autentik dalam setiap suapan Mie Signature kami. Diciptakan dengan bahan-bahan terbaik dan racikan rempah tradisional yang khas, ini adalah pilihan yang tak boleh dilewatkan.</p>
                     </div>
                     <div class="pb-3">
@@ -310,11 +310,11 @@ if ($curr) {
               <div class="col-12 my-2" data-aos="zoom-in" data-aos-delay="100">
                 <div class="menu-menu row py-2 pt-3">
                   <div class="col-5 text-start text p-0 d-flex align-items-center justify-content-center menu-gambar2">
-                    <img src="assets/images/mi2.png" alt="" />
+                    <img src="assets/images/mi2.png" alt="Mie Signature MieME" width="156" height="149" loading="lazy" decoding="async" />
                   </div>
                   <div class="col-7">
                     <div class="mx-3 mt-3">
-                      <h1>Mie Signature</h1>
+                      <h3>Mie Signature</h3>
 
                       <div class="d-flex justify-content-start align-items-center">
                         <div class="porsi text-center">
@@ -349,11 +349,11 @@ if ($curr) {
               <div class="col-12 my-2" data-aos="zoom-in" data-aos-delay="200">
                 <div class="menu-menu row py-2 pt-3">
                   <div class="col-5 text-start text p-0 d-flex align-items-center justify-content-center menu-gambar2">
-                    <img src="assets/images/mi3.png" alt="" />
+                    <img src="assets/images/mi3.png" alt="Mie Goreng Topping Istimewah MieME" width="167" height="165" loading="lazy" decoding="async" />
                   </div>
                   <div class="col-7">
                     <div class="mx-3">
-                      <h1>Mie Goreng Topping Istimewah</h1>
+                      <h3>Mie Goreng Topping Istimewah</h3>
 
                       <div class="d-flex justify-content-start align-items-center">
                         <div class="porsi text-center">
@@ -390,12 +390,12 @@ if ($curr) {
             <div class="col-lg-8 my-2 order-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="menu-menu row h-100 py-">
                 <div class="col-lg-5 text-start text p-0 d-flex align-items-start menu-gambar4">
-                  <img src="assets/images/mi-udang.png" alt="" />
+                  <img src="assets/images/mi-udang.png" alt="Mie Kuah Udang Spesial MieME" width="352" height="349" loading="lazy" decoding="async" />
                 </div>
                 <div class="col-lg-7">
                   <div class="mx-3 d-flex h-100 flex-column justify-content-between">
                     <div class="pt-lg-5 mt-3">
-                      <h1>Mie Kuah Udang Spesial</h1>
+                      <h3>Mie Kuah Udang Spesial</h3>
                       <p class="mt-3">
                         Nikmati kelezatan udang segar dalam setiap sajian Mie Kuah kami. Hidangan ini menghadirkan mie lembut yang terendam dalam kuah gurih dengan aroma laut yang memikat. Setiap gigitan menawarkan sensasi rasa yang
                         menggugah selera, menghadirkan pengalaman kuliner yang istimewa.
@@ -438,11 +438,11 @@ if ($curr) {
               <div class="">
                 <div class="menu-menu row pb-2 h-100">
                   <div class="text-start text p-0 d-flex align-items-start justify-content-center menu-gambar3">
-                    <img src="assets/images/mi-kuah-s.png" alt="" />
+                    <img src="assets/images/mi-kuah-s.png" alt="Mie Kuah Spesial MieME" width="327" height="213" loading="lazy" decoding="async" />
                   </div>
                   <div class="">
                     <div class="mx-3 mt-3">
-                      <h1>Mie Kuah Spesial</h1>
+                      <h3>Mie Kuah Spesial</h3>
 
                       <div class="d-flex justify-content-start align-items-center">
                         <div class="porsi text-center">
@@ -479,12 +479,12 @@ if ($curr) {
             <div class="col-lg-6 my-2 order-last" data-aos="zoom-in" data-aos-delay="100">
               <div class="menu-menu row h-100 py-">
                 <div class="col-5 text-start text p-0 d-flex align-items-end menu-gambar5">
-                  <img src="assets/images/esteh.png" alt="" />
+                  <img src="assets/images/esteh.png" alt="Es Teh MieME" width="240" height="349" loading="lazy" decoding="async" />
                 </div>
                 <div class="col-7">
                   <div class="mx-3 d-flex h-100 flex-column justify-content-center">
                     <div class="pt-5 mt-3">
-                      <h1>Es Teh</h1>
+                      <h3>Es Teh</h3>
                       <p class="mt-3">Nikmati sensasi kesegaran Es Teh kami yang menyegarkan. Disajikan dengan teh berkualitas tinggi yang diseduh secara sempurna, ditambah dengan es batu untuk memberikan rasa yang menyegarkan.</p>
                     </div>
                     <div class="pb-3">
@@ -524,11 +524,11 @@ if ($curr) {
               <div class="col-12 my-2" data-aos="zoom-in" data-aos-delay="200">
                 <div class="menu-menu row pt-3">
                   <div class="col-5 text-start text p-0 d-flex align-items-lg-center align-items-end justify-content-center menu-gambar6">
-                    <img src="assets/images/esbuah.png" alt="" />
+                    <img src="assets/images/esbuah.png" alt="Es Buah Segar MieME" width="171" height="213" loading="lazy" decoding="async" />
                   </div>
                   <div class="col-7">
                     <div class="mx-3 mt-3">
-                      <h1>Es Buah Segar</h1>
+                      <h3>Es Buah Segar</h3>
 
                       <div class="d-flex justify-content-start align-items-center">
                         <div class="porsi text-center">
@@ -563,11 +563,11 @@ if ($curr) {
               <div class="col-12 my-2" data-aos="zoom-in" data-aos-delay="300">
                 <div class="menu-menu row pt-3">
                   <div class="col-5 text-start text p-0 d-flex align-items-lg-center align-items-end justify-content-center menu-gambar6">
-                    <img src="assets/images/esjeruk.png" alt="" />
+                    <img src="assets/images/esjeruk.png" alt="Es Jeruk MieME" width="137" height="176" loading="lazy" decoding="async" />
                   </div>
                   <div class="col-7">
                     <div class="mx-3 mt-3">
-                      <h1>Es Jeruk</h1>
+                      <h3>Es Jeruk</h3>
 
                       <div class="d-flex justify-content-start align-items-center">
                         <div class="porsi text-center">
@@ -610,7 +610,7 @@ if ($curr) {
                 </div>
 
                 <div class="col-lg-7 deskripsi row align-content-lg-center align-content-end px-3 pe-lg-5 pt-5 pb-5">
-                  <h1>Pesan sekarang dan nikmati MieME bersama keluarga anda</h1>
+                  <h2>Pesan sekarang dan nikmati MieME bersama keluarga anda</h2>
                   <p>Jangan lewatkan kesempatan untuk menciptakan momen spesial bersama orang-orang terdekat. </p>
                   <div class="d-inline-block mt-3">
                     <a href="<?= url("order") ?>" class="text-decoration-none">
@@ -643,7 +643,7 @@ if ($curr) {
 
             <div class="Qdayak row">
               <div class="col-lg-6">
-                <h1 class="makanan-subjudul pe-5" data-aos="zoom-in" data-aos-delay="200">Apa yang dikatakan konsumen tentang MieME</h1>
+                <h2 class="makanan-subjudul pe-5" data-aos="zoom-in" data-aos-delay="200">Apa yang dikatakan konsumen tentang MieME</h2>
               </div>
               <div class="col-lg-6">
                 <p class="text-grey makanan-p pe-5" data-aos="zoom-in" data-aos-delay="300">Ulasan-ulasan ini adalah cerminan dari kepuasan pelanggan yang telah menikmati hidangan MieME kami.</p>
@@ -697,7 +697,7 @@ if ($curr) {
                     <p class="testismoni card-text">Saya benar-benar terkesan dengan kelezatan MieME! Rasanya sangat autentik dan bumbunya begitu pas. Keluarga saya juga sangat menyukainya!</p>
                     <hr class="hr my-2" />
                     <div class="col-1 pe-5">
-                      <img src="assets/images/user.png" alt="user" width="50" class="rounded-circle" />
+                      <img src="assets/images/user.png" alt="Foto pelanggan MieME" width="42" height="42" loading="lazy" decoding="async" class="rounded-circle" />
                     </div>
                     <div class="col">
                       <p class="nama mb-0 d-block text-white">Monkey D Luffy</p>
@@ -748,7 +748,7 @@ if ($curr) {
                     <p class="testismoni card-text">Saya telah mencicipi berbagai mie, namun MieME sungguh luar biasa. Rasa dan konsistensinya tidak tertandingi. Saya sangat puas dengan setiap kunjungan.</p>
                     <hr class="hr my-2" />
                     <div class="col-1 pe-5">
-                      <img src="assets/images/user2.png" alt="user" width="50" class="rounded-circle" />
+                      <img src="assets/images/user2.png" alt="Foto pelanggan MieME" width="42" height="42" loading="lazy" decoding="async" class="rounded-circle" />
                     </div>
                     <div class="col">
                       <p class="nama mb-0 d-block text-white">Sukuna</p>
@@ -771,10 +771,10 @@ if ($curr) {
       <div class="container my-5">
         <div class="faq-judul text-center row">
           <div>
-            <h2 data-aos="fade-up" data-aos-delay="10" class="">FAQ</h2>
+            <p data-aos="fade-up" data-aos-delay="10" class="">FAQ</p>
           </div>
 
-          <h1 data-aos="zoom-in" data-aos-delay="200">Frequently Asked Question</h1>
+          <h2 data-aos="zoom-in" data-aos-delay="200">Frequently Asked Question</h2>
 
           <p class="" data-aos="zoom-in" data-aos-delay="400">MieME siap menggugah selera makan anda</p>
         </div>

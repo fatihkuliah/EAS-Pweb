@@ -1,13 +1,13 @@
 <div class="<?= e($col ?? 'col-lg-6') ?>">
   <div class="menu-menu order-card row h-100 m-0">
     <div class="col-5 text-start text p-0 d-flex align-items-center justify-content-center order-card-img">
-      <img src="<?= asset($menu['gambar']) ?>" alt="<?= e($menu['nama']) ?>" />
+      <?= image_tag($menu['gambar'], $menu['nama'], 234, 325) ?>
     </div>
     <div class="col-7">
       <div class="order-card-body d-flex h-100 flex-column justify-content-between">
         <div>
-          <a href="<?= url('menu-detail?id=' . $menu['id']) ?>" class="text-decoration-none">
-            <h1><?= e($menu['nama']) ?></h1>
+          <a href="<?= menu_url($menu) ?>" class="text-decoration-none">
+            <h3><?= e($menu['nama']) ?></h3>
           </a>
           <p class="mt-3"><?= e($menu['deskripsi']) ?></p>
         </div>

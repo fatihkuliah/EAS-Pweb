@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= e($title ?? 'MieME') ?></title>
+    <?= render_meta($seo ?? ['title' => $title ?? 'MieME']) ?>
     <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('assets/images/favicon/apple-touch-icon.png') ?>" />
     <link rel="icon" type="image/png" sizes="32x32" href="<?= asset('assets/images/favicon/favicon-32x32.png') ?>" />
     <link rel="icon" type="image/png" sizes="16x16" href="<?= asset('assets/images/favicon/favicon-16x16.png') ?>" />
     <link rel="manifest" href="<?= asset('assets/images/favicon/site.webmanifest') ?>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
@@ -21,6 +23,7 @@
           favorites: <?= json_encode(\App\Models\Menu::favorites()) ?>,
           cart: <?= json_encode(\App\Models\Cart::items()) ?>,
           cartTotal: <?= json_encode(\App\Models\Cart::total()) ?>,
+          baseUrl: <?= json_encode(url()) ?>,
           storageUrl: <?= json_encode(asset('storage/')) ?>,
       };
     </script>
