@@ -1,3 +1,6 @@
+<?php
+$backUrl = !empty($order) ? url("orders") : url("checkout");
+?>
 <section class="order-page position-relative overflow-hidden">
       <img src="assets/images/aboutus atas kanan.svg" alt="" class="aboutus-atas-kanan position-absolute z-0" />
       <img src="assets/images/aboutus atas kiri.svg" alt="" class="aboutus-atas-kiri position-absolute z-0" />
@@ -11,7 +14,8 @@
               Pastikan menu dan porsi sudah sesuai sebelum lanjut ke pembayaran.
             </p>
           </div>
-          <div class="col-lg-4 d-flex align-items-center justify-content-lg-end">
+          <div class="col-lg-4 d-flex align-items-center justify-content-lg-end gap-2">
+            <a href="<?= $backUrl ?>" class="order-back text-decoration-none">Kembali</a>
             <a href="<?= url("orders") ?>" class="order-back text-decoration-none">Riwayat Pesanan</a>
           </div>
         </div>

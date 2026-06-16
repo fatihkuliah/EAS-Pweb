@@ -8,8 +8,14 @@
         </div>
         <div class="row pb-5 justify-content-center">
           <div class="col-lg-5">
+            <a href="<?= url("payment") ?>" class="order-back text-decoration-none d-inline-block mb-3">Kembali</a>
             <form class="form-box text-center" id="uploadForm">
               <p class="m-0 form-note" id="paymentMethod">Metode Pembayaran</p>
+              <div class="payment-target mt-3" id="paymentTarget">
+                <p class="m-0" id="paymentNumberLabel">Nomor Tujuan</p>
+                <h2 id="paymentNumber">-</h2>
+                <span id="paymentAccountName">MieME Indonesia</span>
+              </div>
               <h1 id="uploadTotal">Rp0</h1>
               <label class="upload-box mt-4" for="receiptInput">
                 <img id="receiptPreview" alt="" class="d-none" />
@@ -27,5 +33,8 @@
         </div>
       </div>
     </section>
+    <script>
+      window.MieMECurrentPayment = <?= json_encode($payment) ?>;
+    </script>
     <script src="<?= asset("assets/js/core/mieme-app.js") ?>"></script>
     <script src="<?= asset("assets/js/features/payment/upload-payment.js") ?>"></script>

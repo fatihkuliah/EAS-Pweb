@@ -12,7 +12,14 @@ if ($curr) {
 }
 ?>
 <nav class="navbar navbar-expand-lg fixed-top" style="padding: 0px; height: 67px">
-      <div class="container inner-navbar d-flex justify-content-lg-between justify-content-end">
+      <div class="container inner-navbar d-flex justify-content-between">
+        <a href="<?= url("") ?>" class="navbar-brand-mieme text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20" fill="none">
+            <path d="M0 14.0669V4.40188L8.70806 0V9.76068L27.2725 0V9.76068L8.70806 19.4257V9.76068L0 14.0669Z" fill="#FF9533" />
+            <path d="M23.2534 13.9712L27.2725 11.6746V17.4161L23.2534 19.9999V13.9712Z" fill="#FF9533" />
+          </svg>
+          <span>MieME</span>
+        </a>
         <button
           class="navbar-toggler"
           style="border: none; box-shadow: none"
@@ -96,7 +103,7 @@ if ($curr) {
 
         <img src="assets/images/lope.svg" alt="" class="lope position-absolute" />
         <div class="container landingcon">
-          <a href="<?= url("") ?>" class="Qdayak d-block position-absolute text-decoration-none">
+          <a href="<?= url("") ?>" class="Qdayak hero-brand d-block position-absolute text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20" fill="none">
               <path d="M0 14.0669V4.40188L8.70806 0V9.76068L27.2725 0V9.76068L8.70806 19.4257V9.76068L0 14.0669Z" fill="#FF9533" />
               <path d="M23.2534 13.9712L27.2725 11.6746V17.4161L23.2534 19.9999V13.9712Z" fill="#FF9533" />

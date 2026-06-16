@@ -1,5 +1,6 @@
 const checkout = MieME.read(MieME.keys.checkout, null);
-const payment = MieME.read(MieME.keys.payment, null);
+const storedPayment = MieME.read(MieME.keys.payment, null);
+const payment = { ...(window.MieMECurrentPayment || {}), ...(storedPayment || {}) };
 const receiptInput = document.querySelector('#receiptInput');
 const receiptPreview = document.querySelector('#receiptPreview');
 const uploadText = document.querySelector('#uploadText');
@@ -7,10 +8,23 @@ const uploadForm = document.querySelector('#uploadForm');
 const successBox = document.querySelector('#successBox');
 let receipt = '';
 
-if (!checkout || !payment) window.location.href = 'order';
+if (!checkout || !payment?.nama) window.location.href = 'order';
 
 document.querySelector('#uploadTotal').innerHTML = MieME.rupiah(checkout?.total || 0);
 document.querySelector('#paymentMethod').innerHTML = payment?.nama || 'Metode Pembayaran';
+
+const paymentTarget = document.querySelector('#paymentTarget');
+const paymentNumberLabel = document.querySelector('#paymentNumberLabel');
+const paymentNumber = document.querySelector('#paymentNumber');
+const paymentAccountName = document.querySelector('#paymentAccountName');
+
+if (payment?.number) {
+  paymentNumberLabel.innerHTML = payment.number_label || 'Nomor Tujuan';
+  paymentNumber.innerHTML = payment.number;
+  paymentAccountName.innerHTML = payment.account_name || 'MieME Indonesia';
+} else {
+  paymentTarget.classList.add('d-none');
+}
 
 receiptInput.addEventListener('change', () => {
   const file = receiptInput.files[0];

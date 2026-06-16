@@ -13,6 +13,73 @@ body {
 /* Navbar */
 .inner-navbar {
   max-width: 1440px;
+  justify-content: space-between !important;
+}
+
+.navbar-brand-mieme {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -1.8px;
+  z-index: 1041;
+  order: 1;
+}
+
+.navbar-brand-mieme:hover {
+  color: #000;
+}
+
+#landing .hero-brand {
+  display: none !important;
+}
+
+.navbar-toggler {
+  order: 2;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .inner-navbar {
+    position: relative;
+    min-height: 67px;
+    align-items: center;
+  }
+
+  .navbar-brand-mieme {
+    order: 1;
+  }
+
+  .navbar-toggler {
+    order: 2;
+    padding-right: 0;
+    z-index: 1041;
+  }
+
+  .inner-navbar .menu {
+    position: absolute;
+    top: 67px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .inner-navbar .menu .navbar-nav {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 16px;
+    background: rgba(255, 149, 51, 0.96);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .inner-navbar .menu .nav-item {
+    margin: 0;
+    justify-content: center;
+  }
 }
 
 .nav-item {
@@ -59,9 +126,6 @@ body {
 }
 
 .navbar-actions {
-  position: absolute;
-  top: 13px;
-  right: 58px;
   z-index: 1040;
   gap: 10px;
 }
@@ -94,6 +158,32 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
+  .inner-navbar {
+    display: grid !important;
+    grid-template-columns: minmax(170px, 1fr) auto minmax(260px, 1fr);
+    align-items: center;
+  }
+
+  .navbar-brand-mieme {
+    grid-column: 1;
+    justify-self: start;
+    order: initial;
+  }
+
+  .inner-navbar .menu {
+    grid-column: 2;
+    justify-self: center;
+    flex-grow: 0;
+  }
+
+  .navbar-actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   .navbar-nav {
     border-radius: 100px;
     backdrop-filter: blur(5px);
@@ -103,6 +193,27 @@ body {
   .menu {
     background: none;
     backdrop-filter: none;
+  }
+
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .nav-item {
+    margin: 0px 8px;
+  }
+
+  .navbar-nav p,
+  .navbar-action-btn {
+    font-size: 13px;
+  }
+
+  .navbar-action-btn {
+    min-height: 36px;
+    padding: 6px 12px;
+  }
+
+  .navbar-actions {
+    gap: 6px;
   }
 }
 
@@ -186,7 +297,13 @@ body {
 }
 
 .gambar-landing {
-  width: 705px;
+  width: min(705px, 92vw);
+  max-width: 100%;
+  height: auto !important;
+  aspect-ratio: 809 / 466;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
 }
 
 .gambar-kiri {
@@ -288,7 +405,9 @@ body {
     letter-spacing: -2.7px;
   }
   .gambar-landing {
-    width: 444px;
+    width: min(444px, 92vw);
+    max-width: 100%;
+    height: auto !important;
   }
   .tombol-landing .more {
     width: 112px;
@@ -1365,7 +1484,13 @@ footer {
 }
 
 .gambar-order-landing {
-  width: 540px;
+  width: min(540px, 92vw);
+  max-width: 100%;
+  height: auto !important;
+  aspect-ratio: 809 / 466;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
 }
 
 .order-hero-text .tagline-landing {
@@ -1398,7 +1523,10 @@ footer {
 }
 
 .order-card img {
-  width: 190px;
+  width: min(190px, 100%);
+  height: auto;
+  max-height: 230px;
+  object-fit: contain;
 }
 
 .order-card-img {
@@ -1658,7 +1786,9 @@ footer {
   }
 
   .gambar-order-landing {
-    width: 390px;
+    width: min(390px, 92vw);
+    max-width: 100%;
+    height: auto !important;
   }
 
   .order-bungkus {
@@ -1667,21 +1797,36 @@ footer {
   }
 
   .order-card {
-    min-height: 260px;
-    padding: 14px;
+    min-height: 0;
+    padding: 16px;
+    border-radius: 28px;
   }
 
   .order-card img {
-    width: 135px;
+    width: min(240px, 82vw);
+    max-height: 210px;
+    object-fit: contain;
   }
 
   .order-card-img {
-    min-height: 210px;
+    width: 100%;
+    min-height: 190px;
+    padding: 8px 0 12px !important;
+  }
+
+  .order-card > .col-5,
+  .order-card > .col-7 {
+    width: 100%;
+  }
+
+  .order-card-body {
+    min-height: 0;
+    padding: 4px 2px 0;
   }
 
   .order-card h1,
   .order-card h3 {
-    font-size: 19px;
+    font-size: 22px;
     letter-spacing: -0.8px;
   }
 
@@ -1690,9 +1835,19 @@ footer {
     line-height: 1.35;
   }
 
+  .order-card .d-flex.justify-content-between.align-items-center.mt-4 {
+    align-items: flex-end !important;
+    gap: 12px;
+  }
+
   .tambah-order {
     font-size: 12px;
     padding: 10px 16px;
+  }
+
+  .fav-order {
+    width: 44px;
+    height: 44px;
   }
 
   .cart-bawah {
@@ -1895,6 +2050,33 @@ footer {
   font-size: 14px;
   font-weight: 800;
   margin-top: 0px;
+}
+
+.payment-target {
+  border-radius: 24px;
+  border: 2px solid #000;
+  background: #ffeed3;
+  padding: 14px 18px;
+}
+
+.payment-target p {
+  color: #58391b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.payment-target h2 {
+  color: #000;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0;
+  margin: 4px 0;
+}
+
+.payment-target span {
+  color: #58391b;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .qris-logo {
