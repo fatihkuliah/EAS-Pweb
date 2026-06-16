@@ -28,6 +28,12 @@ class CheckoutController extends Controller
             'cart' => $cart->items(),
             'cartTotal' => $cart->total(),
             'user' => User::current(),
+            'seo' => [
+                'title' => 'Checkout MieME',
+                'description' => 'Lengkapi alamat dan data penerima untuk menyelesaikan pesanan MieME.',
+                'url' => absolute_url('checkout'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 
@@ -48,6 +54,12 @@ class CheckoutController extends Controller
             'title' => 'Detail Pesanan MieME',
             'checkout' => $checkout,
             'order' => $order,
+            'seo' => [
+                'title' => 'Detail Pesanan MieME',
+                'description' => 'Lihat ringkasan pesanan dan pembayaran MieME.',
+                'url' => absolute_url('detail-order'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 

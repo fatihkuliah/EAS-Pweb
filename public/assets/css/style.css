@@ -476,7 +476,8 @@ body {
   backdrop-filter: blur(12.5px);
 }
 
-.award-award h1 {
+.award-award h1,
+.award-award h3 {
   color: #ff9533;
   font-size: 36px;
   font-weight: 700;
@@ -509,7 +510,8 @@ body {
     padding: 25px 10px;
   }
 
-  .award-award h1 {
+  .award-award h1,
+  .award-award h3 {
     font-size: 25px;
   }
 
@@ -576,7 +578,8 @@ body {
   object-fit: cover;
 }
 
-.menu-menu h1 {
+.menu-menu h1,
+.menu-menu h3 {
   color: #000;
   font-size: 32px;
   font-weight: 600;
@@ -648,7 +651,8 @@ body {
   top: -30px;
 }
 
-.menu-footer .deskripsi h1 {
+.menu-footer .deskripsi h1,
+.menu-footer .deskripsi h2 {
   font-size: 36px;
   font-weight: 800;
   color: #000;
@@ -700,7 +704,8 @@ body {
     width: 162px;
   }
 
-  .menu-menu h1 {
+  .menu-menu h1,
+  .menu-menu h3 {
     font-size: 20px;
     letter-spacing: -1.8px;
   }
@@ -747,7 +752,8 @@ body {
     border-radius: 60px;
   }
 
-  .menu-footer .deskripsi h1 {
+  .menu-footer .deskripsi h1,
+  .menu-footer .deskripsi h2 {
     letter-spacing: -1.8px;
 
     font-size: 20px;
@@ -998,7 +1004,7 @@ body {
   margin-bottom: 100px;
 }
 
-.faq-judul h2 {
+.faq-judul > div > p {
   font-size: 12px;
 
   font-family: Montserrat;
@@ -1011,7 +1017,7 @@ body {
   display: inline-block;
 }
 
-.faq-judul h1 {
+.faq-judul h2 {
   color: #fff;
   font-size: 25px;
   letter-spacing: -2.25px;
@@ -1115,11 +1121,11 @@ body {
     bottom: 0px;
     right: -50px;
   }
-  .faq-judul h2 {
+  .faq-judul > div > p {
     font-size: 16px;
   }
 
-  .faq-judul h1 {
+  .faq-judul h2 {
     font-size: 36px;
     letter-spacing: -3.24px;
   }
@@ -1403,7 +1409,8 @@ footer {
   padding: 6px 10px 6px 4px;
 }
 
-.order-card h1 {
+.order-card h1,
+.order-card h3 {
   font-size: 27px;
   line-height: 1.04;
   letter-spacing: -1.6px;
@@ -1672,7 +1679,8 @@ footer {
     min-height: 210px;
   }
 
-  .order-card h1 {
+  .order-card h1,
+  .order-card h3 {
     font-size: 19px;
     letter-spacing: -0.8px;
   }
@@ -1816,6 +1824,7 @@ footer {
 }
 
 .summary-box h1,
+.summary-box h2,
 .payment-total h1,
 .qris-detail-box h1 {
   color: #000;

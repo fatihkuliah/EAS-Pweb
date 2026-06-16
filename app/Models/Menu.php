@@ -60,6 +60,17 @@ class Menu
         return null;
     }
 
+    public static function findBySlug(string $slug): ?array
+    {
+        foreach (self::all() as $menu) {
+            if (menu_slug($menu) === $slug) {
+                return $menu;
+            }
+        }
+
+        return null;
+    }
+
     private static function fallbackMenus(): array
     {
         return [
@@ -145,6 +156,7 @@ class Menu
             'deskripsi' => $row['description'],
             'gambar' => $row['image'],
             'harga' => (int) $row['price'],
+            'slug' => slugify($row['menu_name']),
             'porsi' => $row['portion'],
             'waktu' => $row['serving_time'],
             'stock' => (int) $row['stock'],

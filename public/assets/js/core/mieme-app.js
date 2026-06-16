@@ -24,11 +24,14 @@ const MieME = (() => {
   const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
   const rupiah = (angka) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(angka || 0);
   const totalCart = (items = cart()) => items.reduce((sum, item) => sum + item.harga * item.qty, 0);
+  const assetUrl = (path = '') => /^https?:\/\//i.test(path) || path.startsWith('/') ? path : `${window.MieMEDatabaseData?.baseUrl || ''}${path}`;
+  const slugify = (value = '') => String(value).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'menu';
+  const menuUrl = (menu) => `${window.MieMEDatabaseData?.baseUrl || ''}menu/${menu.slug || slugify(menu.nama)}`;
   const cart = () => read(keys.cart, []);
   const favorites = () => read(keys.favorites, []);
   const orders = () => read(keys.orders, []);
   const user = () => read(keys.user, null);
-  const getMenu = (id) => menus.find((item) => item.id == id);
+  const getMenu = (value) => menus.find((item) => item.id == value || item.slug == value || slugify(item.nama) == value);
 
   function addCart(id, qty = 1) {
     const formData = new FormData();
@@ -93,5 +96,5 @@ const MieME = (() => {
     // Handled in review.js submit handler
   }
 
-  return { keys, menus, rupiah, cart, favorites, orders, user, read, write, getMenu, totalCart, addCart, updateCart, toggleFavorite, orderFromCheckout, saveReview };
+  return { keys, menus, rupiah, cart, favorites, orders, user, read, write, getMenu, menuUrl, assetUrl, totalCart, addCart, updateCart, toggleFavorite, orderFromCheckout, saveReview };
 })();

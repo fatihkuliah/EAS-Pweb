@@ -19,6 +19,12 @@ class AuthController extends Controller
         $this->view('auth', [
             'title' => 'Login MieME',
             'mode' => $_GET['mode'] ?? 'login',
+            'seo' => [
+                'title' => 'Login MieME',
+                'description' => 'Masuk ke akun MieME untuk mengelola profil, favorit, checkout, dan riwayat pesanan.',
+                'url' => absolute_url('auth'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 

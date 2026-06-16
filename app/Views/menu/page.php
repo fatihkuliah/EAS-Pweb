@@ -27,7 +27,7 @@
             <div class="d-flex justify-content-center align-self-end position-relative">
               <img src="assets/images/emot-lope.svg" alt="emot-lope" class="emot-lope position-absolute" />
               <img src="assets/images/king.svg" alt="" class="king position-absolute" />
-              <img class="gambar-order-landing" src="assets/images/Group 18325.png" alt="" data-aos="fade-up" data-aos-delay="500" />
+              <img class="gambar-order-landing" src="assets/images/Group 18325.png" alt="Pilihan menu mie premium MieME" width="809" height="466" fetchpriority="high" decoding="async" data-aos="fade-up" data-aos-delay="500" />
             </div>
           </div>
         </div>

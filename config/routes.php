@@ -11,10 +11,13 @@ use App\Controllers\OrderController;
 use App\Controllers\PaymentController;
 use App\Controllers\ProfileController;
 use App\Controllers\AdminController;
+use App\Controllers\SeoController;
 
 return [
     'GET' => [
         '' => [HomeController::class, 'index'],
+        'robots.txt' => [SeoController::class, 'robots'],
+        'sitemap.xml' => [SeoController::class, 'sitemap'],
         'order' => [MenuController::class, 'index'],
         'menu-detail' => [MenuController::class, 'detail'],
         'favorites' => [MenuController::class, 'favorites'],

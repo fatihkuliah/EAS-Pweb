@@ -22,6 +22,12 @@ class OrderController extends Controller
             'title' => 'Riwayat Pesanan MieME',
             'orders' => (new OrderService())->all(),
             'message' => flash(),
+            'seo' => [
+                'title' => 'Riwayat Pesanan MieME',
+                'description' => 'Pantau riwayat dan status pesanan MieME anda.',
+                'url' => absolute_url('orders'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 
@@ -79,6 +85,12 @@ class OrderController extends Controller
         $this->view('review', [
             'title' => 'Review MieME',
             'order' => $order,
+            'seo' => [
+                'title' => 'Review MieME',
+                'description' => 'Berikan review untuk pesanan MieME yang sudah selesai.',
+                'url' => absolute_url('review'),
+                'robots' => 'noindex, follow',
+            ],
         ]);
     }
 
