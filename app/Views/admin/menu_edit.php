@@ -63,7 +63,7 @@ require __DIR__ . '/layout_start.php';
                 
                 <div class="mt-3">
                     <span class="d-block text-muted mb-1" style="font-size: 12px; font-weight: 700;">Gambar Saat Ini:</span>
-                    <img src="<?= asset($menu['image']) ?>" alt="<?= e($menu['menu_name']) ?>" style="width: 120px; height: 120px; object-fit: cover; border: 2px solid #000; border-radius: 15px;">
+                    <img src="<?= asset(storage_public_path($menu['image'])) ?>" alt="<?= e($menu['menu_name']) ?>" style="width: 120px; height: 120px; object-fit: cover; border: 2px solid #000; border-radius: 15px;">
                 </div>
             </div>
 

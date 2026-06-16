@@ -193,7 +193,7 @@ class Order
                 'nama' => $itemRow['menu_name'],
                 'kategori' => $itemRow['category_name'] ?? '',
                 'harga' => (int) $itemRow['price'],
-                'gambar' => $itemRow['image'],
+                'gambar' => storage_public_path($itemRow['image']),
                 'porsi' => $itemRow['portion'],
                 'waktu' => $itemRow['serving_time'],
                 'qty' => (int) $itemRow['quantity'],

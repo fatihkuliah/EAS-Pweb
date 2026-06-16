@@ -154,7 +154,7 @@ class Menu
             'nama' => $row['menu_name'],
             'kategori' => $row['category_name'] ?? '',
             'deskripsi' => $row['description'],
-            'gambar' => $row['image'],
+            'gambar' => storage_public_path($row['image']),
             'harga' => (int) $row['price'],
             'slug' => slugify($row['menu_name']),
             'porsi' => $row['portion'],
@@ -167,7 +167,7 @@ class Menu
             'menu_name' => $row['menu_name'],
             'description' => $row['description'],
             'price' => (float) $row['price'],
-            'image' => $row['image'],
+            'image' => storage_public_path($row['image']),
             'serving_time' => $row['serving_time'],
             'portion' => $row['portion'],
         ];
