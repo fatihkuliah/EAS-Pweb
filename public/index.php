@@ -14,7 +14,28 @@ define('BASE_PATH', dirname(__DIR__));
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $staticFile = __DIR__ . '/' . ltrim(rawurldecode($path), '/');
 
-if (PHP_SAPI === 'cli-server' && is_file($staticFile)) {
+if (strpos($path, '/storage/') === 0) {
+    $storageFile = BASE_PATH . '/' . ltrim(rawurldecode($path), '/');
+    if (is_file($storageFile)) {
+        $extension = strtolower(pathinfo($storageFile, PATHINFO_EXTENSION));
+        $types = [
+            'css' => 'text/css; charset=UTF-8',
+            'js' => 'application/javascript; charset=UTF-8',
+            'svg' => 'image/svg+xml',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'gif' => 'image/gif',
+        ];
+        $type = $types[$extension] ?? 'application/octet-stream';
+        header('Content-Type: ' . $type);
+        header('Content-Length: ' . filesize($storageFile));
+        readfile($storageFile);
+        exit;
+    }
+}
+
+if (PHP_SAPI === 'cli-server' && is_file($staticFile) && pathinfo($staticFile, PATHINFO_EXTENSION) !== 'php') {
     $extension = strtolower(pathinfo($staticFile, PATHINFO_EXTENSION));
     $types = [
         'css' => 'text/css; charset=UTF-8',

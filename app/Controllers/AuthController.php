@@ -11,8 +11,9 @@ class AuthController extends Controller
 {
     public function index(): void
     {
-        if (User::current() !== null) {
-            redirect('profile');
+        $curr = User::current();
+        if ($curr !== null) {
+            redirect(($curr['role'] ?? 'customer') === 'admin' ? 'admin' : 'profile');
         }
 
         $this->view('auth', [
@@ -69,7 +70,8 @@ class AuthController extends Controller
             }
         }
 
-        echo json_encode(['success' => true]);
+        $redirect = (User::current()['role'] ?? 'customer') === 'admin' ? 'admin' : 'profile';
+        echo json_encode(['success' => true, 'redirect' => url($redirect)]);
         exit;
     }
 
