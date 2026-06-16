@@ -48,7 +48,7 @@ authForm.addEventListener('submit', (event) => {
     .then((response) => {
       return response.json().then((data) => {
         if (response.ok) {
-          window.location.href = 'profile';
+          window.location.href = data.redirect || 'profile';
         } else {
           alert(data.message || 'Gagal melakukan autentikasi.');
         }

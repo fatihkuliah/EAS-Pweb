@@ -12,7 +12,7 @@ return new class {
                 payment_method ENUM('BCA', 'BRI', 'BNI', 'Mandiri', 'GoPay', 'DANA', 'OVO', 'LinkAja', 'VA BCA', 'VA BRI', 'VA BNI', 'VA Mandiri', 'QRIS') NOT NULL,
                 amount DECIMAL(10, 2) NOT NULL,
                 payment_proof VARCHAR(255) DEFAULT NULL,
-                payment_status ENUM('Menunggu Konfirmasi', 'Lunas', 'Gagal') DEFAULT 'Menunggu Konfirmasi',
+                payment_status ENUM('Menunggu Konfirmasi', 'Lunas', 'Gagal', 'verified', 'rejected') DEFAULT 'Menunggu Konfirmasi',
                 paid_at TIMESTAMP NULL DEFAULT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

@@ -38,8 +38,14 @@
         </div>
         <div class="navbar-actions d-none d-lg-flex">
           <a href="<?= url("order") ?>" class="navbar-action-btn navbar-order-btn text-decoration-none">Order</a>
-          <?php if (\App\Models\User::current()) : ?>
-            <a href="<?= url("profile") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">Profile</a>
+          <?php 
+          $curr = \App\Models\User::current();
+          if ($curr) : 
+            $isAdmin = ($curr['role'] ?? 'customer') === 'admin';
+          ?>
+            <a href="<?= url($isAdmin ? "admin" : "profile") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">
+              <?= $isAdmin ? "Dashboard" : "Profile" ?>
+            </a>
           <?php else : ?>
             <a href="<?= url("auth") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">Login</a>
           <?php endif; ?>

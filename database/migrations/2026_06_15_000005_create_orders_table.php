@@ -15,7 +15,7 @@ return new class {
                 shipping_address TEXT NOT NULL,
                 note TEXT DEFAULT NULL,
                 total_price DECIMAL(10, 2) NOT NULL,
-                status ENUM('Menunggu Pembayaran', 'Diproses', 'Dikirim', 'Selesai', 'Batal') DEFAULT 'Menunggu Pembayaran',
+                status ENUM('Menunggu Pembayaran', 'Diproses', 'Dikirim', 'Selesai', 'Batal', 'paid') DEFAULT 'Menunggu Pembayaran',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE RESTRICT ON UPDATE CASCADE

@@ -33,7 +33,8 @@ class User
                     'email_address' => $user['email'],
                     'phone' => $user['phone'],
                     'address' => $user['address'],
-                    'profile_image' => $user['profile_image']
+                    'profile_image' => $user['profile_image'],
+                    'role' => $user['role'] ?: 'customer',
                 ];
             }
         } catch (\Throwable $e) {
@@ -59,12 +60,13 @@ class User
             $phone = '';
             $address = '';
             $avatar = 'assets/images/user.png';
+            $role = 'customer';
 
             $insertStmt = $db->prepare('
-                INSERT INTO users (name, email, password_hash, phone, address, profile_image)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO users (name, email, password_hash, phone, address, profile_image, role)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
             ');
-            $insertStmt->execute([$name, $email, $hash, $phone, $address, $avatar]);
+            $insertStmt->execute([$name, $email, $hash, $phone, $address, $avatar, $role]);
             $userId = (int) $db->lastInsertId();
 
             session_regenerate_id(true);
@@ -75,6 +77,7 @@ class User
                 'telepon' => $phone,
                 'alamat' => $address,
                 'avatar' => $avatar,
+                'role' => $role,
             ];
 
             return true;
@@ -100,6 +103,7 @@ class User
                     'telepon' => $user['phone'] ?: '',
                     'alamat' => $user['address'] ?: '',
                     'avatar' => $user['profile_image'] ?: 'assets/images/user.png',
+                    'role' => $user['role'] ?: 'customer',
                 ];
                 return true;
             }
@@ -117,8 +121,10 @@ class User
         $phone = trim((string) ($data['telepon'] ?? $data['phone'] ?? '081234567890'));
         $address = trim((string) ($data['alamat'] ?? $data['address'] ?? 'Jl. Jendral Sudirman No. 1, Jakarta'));
         $avatar = $data['avatar'] ?? $data['profile_image'] ?? 'assets/images/user.png';
+        $role = $data['role'] ?? null;
 
         $userId = null;
+        $finalRole = 'customer';
 
         try {
             $db = Database::connect();
@@ -129,19 +135,21 @@ class User
             $existing = $stmt->fetch();
 
             if ($existing) {
+                $finalRole = $role ?? $existing['role'] ?? 'customer';
                 $updateStmt = $db->prepare('
                     UPDATE users 
-                    SET name = ?, phone = ?, address = ?, profile_image = ? 
+                    SET name = ?, phone = ?, address = ?, profile_image = ?, role = ? 
                     WHERE email = ?
                 ');
-                $updateStmt->execute([$name, $phone, $address, $avatar, $email]);
+                $updateStmt->execute([$name, $phone, $address, $avatar, $finalRole, $email]);
                 $userId = (int) $existing['user_id'];
             } else {
+                $finalRole = $role ?? 'customer';
                 $insertStmt = $db->prepare('
-                    INSERT INTO users (name, email, password_hash, phone, address, profile_image)
-                    VALUES (?, ?, ?, ?, ?, ?)
+                    INSERT INTO users (name, email, password_hash, phone, address, profile_image, role)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
                 ');
-                $insertStmt->execute([$name, $email, password_hash('password', PASSWORD_DEFAULT), $phone, $address, $avatar]);
+                $insertStmt->execute([$name, $email, password_hash('password', PASSWORD_DEFAULT), $phone, $address, $avatar, $finalRole]);
                 $userId = (int) $db->lastInsertId();
             }
         } catch (\Throwable $e) {
@@ -155,6 +163,7 @@ class User
             'telepon' => $phone,
             'alamat' => $address,
             'avatar' => $avatar,
+            'role' => $finalRole,
         ];
     }
 
