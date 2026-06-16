@@ -1,3 +1,16 @@
+<?php
+$curr = \App\Models\User::current();
+$isAdmin = $curr && ($curr['role'] ?? 'customer') === 'admin';
+$activeOrdersCount = 0;
+if ($curr) {
+    $userOrders = \App\Models\Order::all();
+    foreach ($userOrders as $order) {
+        if (!in_array($order['status'] ?? '', ['Selesai', 'Batal'])) {
+            $activeOrdersCount++;
+        }
+    }
+}
+?>
 <nav class="navbar navbar-expand-lg fixed-top" style="padding: 0px; height: 67px">
       <div class="container inner-navbar d-flex justify-content-lg-between justify-content-end">
         <button
@@ -34,15 +47,39 @@
             <li class="nav-item nav-hover-7 d-flex align-items-center">
               <a style="padding: 0px" class="nav-link text-black" href="#faq"><p class="nav-color-2 m-auto my-2">FAQ</p></a>
             </li>
+            <li class="nav-item nav-hover-7 d-flex align-items-center d-lg-none">
+              <a style="padding: 0px" class="nav-link text-black" href="<?= url("order") ?>"><p class="nav-color-2 m-auto my-2">Order</p></a>
+            </li>
+            <?php if ($curr) : ?>
+              <li class="nav-item nav-hover-7 d-flex align-items-center d-lg-none">
+                <a style="padding: 0px" class="nav-link text-black" href="<?= url("orders") ?>">
+                  <p class="nav-color-2 m-auto my-2">
+                    Pesanan Saya
+                    <?php if ($activeOrdersCount > 0): ?>
+                      <span class="badge bg-danger rounded-pill ms-1" style="font-size: 10px;"><?= $activeOrdersCount ?></span>
+                    <?php endif; ?>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item nav-hover-7 d-flex align-items-center d-lg-none">
+                <a style="padding: 0px" class="nav-link text-black" href="<?= url($isAdmin ? "admin" : "profile") ?>"><p class="nav-color-2 m-auto my-2"><?= $isAdmin ? "Dashboard" : "Profile" ?></p></a>
+              </li>
+            <?php else : ?>
+              <li class="nav-item nav-hover-7 d-flex align-items-center d-lg-none">
+                <a style="padding: 0px" class="nav-link text-black" href="<?= url("auth") ?>"><p class="nav-color-2 m-auto my-2">Login</p></a>
+              </li>
+            <?php endif; ?>
           </ul>
         </div>
         <div class="navbar-actions d-none d-lg-flex">
           <a href="<?= url("order") ?>" class="navbar-action-btn navbar-order-btn text-decoration-none">Order</a>
-          <?php 
-          $curr = \App\Models\User::current();
-          if ($curr) : 
-            $isAdmin = ($curr['role'] ?? 'customer') === 'admin';
-          ?>
+          <?php if ($curr) : ?>
+            <a href="<?= url("orders") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none" style="background-color: #ffc38b;">
+              Pesanan Saya
+              <?php if ($activeOrdersCount > 0): ?>
+                <span class="badge bg-danger rounded-pill ms-1" style="font-size: 10px; color: #fff; padding: 4px 6px;"><?= $activeOrdersCount ?></span>
+              <?php endif; ?>
+            </a>
             <a href="<?= url($isAdmin ? "admin" : "profile") ?>" class="navbar-action-btn navbar-auth-btn text-decoration-none">
               <?= $isAdmin ? "Dashboard" : "Profile" ?>
             </a>
@@ -59,13 +96,13 @@
 
         <img src="assets/images/lope.svg" alt="" class="lope position-absolute" />
         <div class="container landingcon">
-          <div class="Qdayak d-block position-absolute">
+          <a href="<?= url("") ?>" class="Qdayak d-block position-absolute text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20" fill="none">
               <path d="M0 14.0669V4.40188L8.70806 0V9.76068L27.2725 0V9.76068L8.70806 19.4257V9.76068L0 14.0669Z" fill="#FF9533" />
               <path d="M23.2534 13.9712L27.2725 11.6746V17.4161L23.2534 19.9999V13.9712Z" fill="#FF9533" />
             </svg>
             <span style="color: #000; text-align: center; font-family: Montserrat; font-size: 20px; font-style: normal; font-weight: 800; line-height: normal; letter-spacing: -1.8px">MieME</span>
-          </div>
+          </a>
 
           <div class="row align-content-end landingcon gap-4">
             <div class="text-center text-landing mx-lg-3">
@@ -83,19 +120,23 @@
               <img src="assets/images/king.svg" alt="" class="king position-absolute" />
               <img class="gambar-landing" src="assets/images/Group 18325.png" alt="" data-aos="fade-up" data-aos-delay="1000" />
               <div class="tombol-landing d-flex position-absolute gap-2" data-aos="fade-down" data-aos-delay="1500">
-                <div class="order d-flex align-items-center justify-content-center">
-                  <a href="<?= url("order") ?>" class="m-0 text-decoration-none text-black">
-                    Order
-                    <svg xmlns="http://www.w3.org/2000/svg" class="order-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M3.13135 18.0928C7.45079 11.8615 12.2677 6.59138 17.9079 1.57788" stroke="black" stroke-width="3" stroke-linecap="round" />
-                      <path d="M17.4734 1.57788C15.0164 1.98738 12.9328 2.88169 10.3507 2.88169C7.6462 2.88169 4.74708 4.12289 2.26221 5.05471" stroke="black" stroke-width="3" stroke-linecap="round" />
-                      <path d="M17.9079 2.01245C16.5304 4.36236 16.6041 6.65358 16.6041 9.30414C16.6041 10.3266 16.0134 13.6687 17.0387 14.1814" stroke="black" stroke-width="3" stroke-linecap="round" />
-                    </svg>
+                <a href="<?= url("order") ?>" class="order d-flex align-items-center justify-content-center text-decoration-none text-black">
+                  Order
+                  <svg xmlns="http://www.w3.org/2000/svg" class="order-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3.13135 18.0928C7.45079 11.8615 12.2677 6.59138 17.9079 1.57788" stroke="black" stroke-width="3" stroke-linecap="round" />
+                    <path d="M17.4734 1.57788C15.0164 1.98738 12.9328 2.88169 10.3507 2.88169C7.6462 2.88169 4.74708 4.12289 2.26221 5.05471" stroke="black" stroke-width="3" stroke-linecap="round" />
+                    <path d="M17.9079 2.01245C16.5304 4.36236 16.6041 6.65358 16.6041 9.30414C16.6041 10.3266 16.0134 13.6687 17.0387 14.1814" stroke="black" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                </a>
+                <?php if ($curr) : ?>
+                  <a href="<?= url("orders") ?>" class="more d-flex align-items-center justify-content-center text-decoration-none text-black" style="background-color: #ffc38b;">
+                    Pesanan Saya
+                    <?php if ($activeOrdersCount > 0): ?>
+                      <span class="badge bg-danger rounded-pill ms-1 text-white" style="font-size: 10px; padding: 2px 5px;"><?= $activeOrdersCount ?></span>
+                    <?php endif; ?>
                   </a>
-                </div>
-                <div class="more d-flex align-items-center justify-content-center">
-                  <a href="" class="m-0 text-decoration-none text-black">Lean More</a>
-                </div>
+                <?php endif; ?>
+                <a href="#aboutus" class="more d-flex align-items-center justify-content-center text-decoration-none text-black">Learn More</a>
               </div>
             </div>
           </div>
@@ -144,7 +185,7 @@
                 </li>
               </ul>
 
-              <div class="learnmore d-inline-block mt-3" data-aos="fade-right" data-aos-delay="1100">learn more</div>
+              <a href="#award" class="learnmore d-inline-block mt-3 text-decoration-none" data-aos="fade-right" data-aos-delay="1100">learn more</a>
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2">
@@ -216,7 +257,7 @@
               </p>
             </div>
             <div class="col-md-4 justify-content-start justify-content-lg-end align-items-center d-flex see-menu">
-              <a href="#" class="text-decoration-none" data-aos="zoom-in" data-aos-delay="300"> See All </a>
+              <a href="<?= url("order") ?>" class="text-decoration-none" data-aos="zoom-in" data-aos-delay="300"> See All </a>
             </div>
           </div>
 

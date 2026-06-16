@@ -6,9 +6,9 @@ $activePage = $activePage ?? 'dashboard';
     <!-- Sidebar -->
     <div class="admin-sidebar" style="width: 260px; background-color: #ffeed3; border-right: 3px solid #000; padding: 20px; display: flex; flex-direction: column; flex-shrink: 0; height: 100vh; position: sticky; top: 0;">
         <!-- Top part: Logo (Fixed) -->
-        <div class="logo text-center mb-4" style="border: 2px solid #000; background-color: #ff9533; border-radius: 20px; padding: 10px; flex-shrink: 0;">
+        <a href="<?= url("") ?>" class="logo text-center mb-4 text-decoration-none d-block" style="border: 2px solid #000; background-color: #ff9533; border-radius: 20px; padding: 10px; flex-shrink: 0;">
             <h2 style="font-weight: 800; color: #000; margin: 0; font-size: 24px;">Mie<span style="color: #fff;">ME</span> <span style="font-size: 14px; font-weight: 700; display: block; letter-spacing: 1px;">ADMIN</span></h2>
-        </div>
+        </a>
         
         <!-- Middle part: Menu Items (Scrollable) -->
         <div class="admin-sidebar-menu flex-grow-1" style="overflow-y: auto; margin-bottom: 15px; padding-right: 4px;">

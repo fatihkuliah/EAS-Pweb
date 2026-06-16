@@ -3,15 +3,15 @@
         <img src="assets/images/kiri.svg" alt="" class="gambar-kiri position-absolute" />
         <img src="assets/images/lope.svg" alt="" class="lope position-absolute" />
         <div class="container order-landingcon position-relative">
-          <div class="Qdayak d-block position-absolute">
+          <a href="<?= url("") ?>" class="Qdayak d-block position-absolute text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20" fill="none">
               <path d="M0 14.0669V4.40188L8.70806 0V9.76068L27.2725 0V9.76068L8.70806 19.4257V9.76068L0 14.0669Z" fill="#FF9533" />
               <path d="M23.2534 13.9712L27.2725 11.6746V17.4161L23.2534 19.9999V13.9712Z" fill="#FF9533" />
             </svg>
             <span style="color: #000; text-align: center; font-family: Montserrat; font-size: 20px; font-style: normal; font-weight: 800; line-height: normal; letter-spacing: -1.8px">MieME</span>
-          </div>
+          </a>
 
-          <div class="d-lg-inline-block d-none nav-order position-absolute">
+          <div class="d-inline-block nav-order position-absolute">
             <a class="order-back text-decoration-none" href="<?= url("") ?>">Back</a>
           </div>
 

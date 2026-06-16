@@ -21,6 +21,7 @@
           favorites: <?= json_encode(\App\Models\Menu::favorites()) ?>,
           cart: <?= json_encode(\App\Models\Cart::items()) ?>,
           cartTotal: <?= json_encode(\App\Models\Cart::total()) ?>,
+          storageUrl: <?= json_encode(asset('storage/')) ?>,
       };
     </script>
   </head>

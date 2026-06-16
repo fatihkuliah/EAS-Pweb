@@ -376,7 +376,7 @@ body {
 }
 
 .menu-aboutus p,
-span {
+.menu-aboutus span {
   margin-top: 10px;
   color: #fff;
   font-size: 20px;
@@ -419,7 +419,7 @@ span {
     font-size: 25px;
   }
   .menu-aboutus p,
-  span {
+  .menu-aboutus span {
     font-size: 14px;
   }
   .img-aboutus {

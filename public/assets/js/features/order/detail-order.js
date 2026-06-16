@@ -45,7 +45,12 @@ if (checkout.items.length == 0) {
         <div class="wide"><p>Catatan</p><h2>${selectedOrder.catatan || '-'}</h2></div>
         ${
           selectedOrder.bukti
-            ? `<div class="wide"><p>Bukti Pembayaran</p><img class="receipt-img" src="${selectedOrder.bukti}" alt="Bukti pembayaran" /></div>`
+            ? `<div class="wide">
+                <p>Bukti Pembayaran</p>
+                <a href="${(window.MieMEDatabaseData?.storageUrl || 'storage/') + selectedOrder.bukti}" target="_blank" class="d-block rounded-3 overflow-hidden" style="max-height: 250px;">
+                  <img class="receipt-img" src="${(window.MieMEDatabaseData?.storageUrl || 'storage/') + selectedOrder.bukti}" alt="Bukti pembayaran" style="width: 100%; object-fit: contain;" />
+                </a>
+               </div>`
             : ''
         }
       </div>

@@ -1,4 +1,19 @@
 .env
 .codex
-/public/assets/uploads/receipts/*
-/public/assets/uploads/avatars/*
+
+# Ignore all files in storage directory
+/storage/*
+!/storage/.gitkeep
+
+# Keep subdirectories but ignore contents
+!/storage/uploads/
+/storage/uploads/*
+!/storage/uploads/.gitkeep
+
+!/storage/exports/
+/storage/exports/*
+!/storage/exports/.gitkeep
+
+!/storage/invoices/
+/storage/invoices/*
+!/storage/invoices/.gitkeep
